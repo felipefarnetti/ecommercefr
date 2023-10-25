@@ -7,11 +7,9 @@ export default function RefundPolicy() {
       <h2 className="text-lg mb-2">Politique de Retour</h2>
 
       <p className="text-sm">
-        Nous offrons une politique de retour de 30 jours sur tous les articles
-        de bijouterie. Si vous n'êtes pas satisfait de votre achat pour quelque
-        raison que ce soit, vous pouvez le retourner pour un remboursement
-        complet moins la livraison. L'article de bijouterie doit être retourné
-        dans son emballage d'origine et dans un état neuf.
+        {
+          "Nous offrons une politique de retour de 30 jours sur tous les articles de bijouterie. Si vous n'êtes pas satisfait de votre achat pour quelque raison que ce soit, vous pouvez le retourner pour un remboursement complet moins la livraison. L'article de bijouterie doit être retourné dans son emballage d'origine et dans un état neuf."
+        }
       </p>
     </div>
   );

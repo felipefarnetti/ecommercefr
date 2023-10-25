@@ -16,7 +16,7 @@ export default function Error({
 
   return (
     <div>
-      <h2 className="mt-4 mb-4">Une erreur s'est produite !</h2>
+      <h2 className="mt-4 mb-4">{"Une erreur s'est produite !"}</h2>
       <h2>
         Raison : <span className="text-red-400">{error.message}</span>
       </h2>

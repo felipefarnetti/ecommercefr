@@ -67,7 +67,7 @@ export default async function ProductByCategory({ params }: Props) {
         </GridView>
       ) : (
         <h1 className="text-center pt-8 pb-10 font-semibold text-2xl opacity-40">
-          Désolé, il n'y a pas de produits dans cette catégorie !
+          {"Désolé, il n'y a pas de produits dans cette catégorie !"}
         </h1>
       )}
     </div>

@@ -49,7 +49,7 @@ export default async function Wishlist() {
   if (!products.length)
     return (
       <h1 className="text-2xl opacity-50 text-center p-6 font-semibold">
-        Il n'y a aucun produit dans votre liste de souhaits.
+        {"Il n'y a aucun produit dans votre liste de souhaits."}
       </h1>
     );
 

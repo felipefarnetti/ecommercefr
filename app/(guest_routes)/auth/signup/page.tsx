@@ -120,7 +120,7 @@ const SignUp = () => {
         type="submit"
         className="w-full"
       >
-        S'inscrire
+        {"S'inscrire"}
       </Button>
       <div className="flex items-center justify-between">
         <Link href="/auth/signin">Se connecter</Link>

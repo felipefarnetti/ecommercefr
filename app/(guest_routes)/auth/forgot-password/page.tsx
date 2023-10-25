@@ -22,7 +22,7 @@ const validationSchema = yup.object().shape({
   email: yup
     .string()
     .email("Adresse e-mail invalide.")
-    .required("L'adresse e-mail est requise."),
+    .required("Une adresse e-mail est requise."),
 });
 
 const ForgotPassword = () => {
@@ -93,10 +93,10 @@ const ForgotPassword = () => {
         type="submit"
         className="w-full"
       >
-        Envoyer l'e-mail
+        {"Envoyer l'e-mail"}
       </Button>
       <div className="flex items-center justify-between">
-        <Link href="/auth/signup">S'inscrire</Link>
+        <Link href="/auth/signup">{"S'inscrire"}</Link>
         <Link href="/auth/signin">Se connecter</Link>
       </div>
       <div className="">

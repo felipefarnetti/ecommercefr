@@ -102,7 +102,7 @@ const SignIn = () => {
         Se connecter
       </Button>
       <div className="flex items-center justify-between">
-        <Link href="/auth/signup">S'inscrire</Link>
+        <Link href="/auth/signup">{"S'inscrire"}</Link>
         <Link href="/auth/forgot-password">Mot de passe oublié</Link>
       </div>
 

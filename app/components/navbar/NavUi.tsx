@@ -90,7 +90,7 @@ export default function NavUI({ cartItemsCount, avatar }: Props) {
                   className="bg-blue-500 text-white px-4 py-1 rounded"
                   href="/auth/signup"
                 >
-                  S'inscrire
+                  {"S'inscrire"}
                 </Link>
               </>
             )}
