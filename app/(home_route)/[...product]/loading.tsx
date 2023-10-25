@@ -1,5 +1,6 @@
 import React from "react";
 
+// Composant utilisé pour afficher un produit en cours de chargement
 export default function LoadingSingleProduct() {
   return (
     <div className="p-4 animate-pulse">

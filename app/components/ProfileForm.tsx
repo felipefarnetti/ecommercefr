@@ -54,15 +54,15 @@ export default function ProfileForm({ id, name, avatar, email }: Props) {
       <div className="text-sm">Email: {email}</div>
       <Input
         onChange={({ target }) => setUserName(target.value)}
-        label="Name"
+        label="Nom"
         value={userName}
-        className="font-semibold"
+        className="font-semibold w-auto"
         crossOrigin={"anonymous"}
       />
       {showSubmitButton ? (
         <Button
           type="submit"
-          className="w-full shadow-none hover:shadow-none hover:scale-[0.98]"
+          className="w-32 lg:w-full shadow-none hover:shadow-none hover:scale-[0.98]"
           color="blue"
           disabled={isPending}
         >

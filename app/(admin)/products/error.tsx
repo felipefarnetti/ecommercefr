@@ -10,21 +10,21 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Log the error to an error reporting service
+    // Enregistrer l'erreur dans un service de rapport d'erreurs
     console.error(error);
   }, [error]);
 
   return (
     <div>
-      <h2 className="mt-4 mb-4">Something went wrong!</h2>
+      <h2 className="mt-4 mb-4">Une erreur s'est produite !</h2>
       <h2>
-        Cause: <span className="text-red-400">{error.message}</span>
+        Raison : <span className="text-red-400">{error.message}</span>
       </h2>
       <button
-        onClick={() => reset()} // Attempt to recover by trying to re-render the segment
+        onClick={() => reset()} // Tenter de récupérer en réessayant de rendre le segment
         className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
       >
-        Try again
+        Réessayer
       </button>
     </div>
   );

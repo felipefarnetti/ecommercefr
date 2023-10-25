@@ -1,10 +1,4 @@
-// import React from "react";
-
-// export default function Dashboard() {
-//   return <div>Dashboard</div>;
-// }
-
-import Rating from "@components/Rating";
+// Importer les composants nécessaires
 import RecentOrdersList, { RecentOrders } from "@components/RecentOrdersList";
 import RecentReviewsList, {
   RecentReviews,
@@ -15,12 +9,17 @@ import ReviewModel from "@models/reviewModel";
 import { ObjectId } from "mongoose";
 import React from "react";
 
+// Obtenir les commandes récentes
 const fetchRecentOrders = async () => {
+  // Connecter à la base de données
   await startDb();
-  const orders = await OrderModel.find({ paymentStatus: "paid" })
+
+  // Obtenir les commandes payées, triées par date de création décroissante et limitées à 5
+  const orders = await OrderModel.find({ paymentStatus: "payé" })
     .sort("-createdAt")
     .limit(5);
 
+  // Convertir les commandes en un tableau d'objets RecentOrders
   const result = orders.map((order): RecentOrders => {
     return {
       id: order._id.toString(),
@@ -31,11 +30,17 @@ const fetchRecentOrders = async () => {
     };
   });
 
+  // Renvoyer le tableau d'objets converti en JSON
   return JSON.stringify(result);
 };
 
+// Obtenir les avis récents
 const fetchRecentReviews = async () => {
+  // Connecter à la base de données
   await startDb();
+
+  // Obtenir les avis triés par date de création décroissante et limités à 10
+  // Inclure le produit et l'utilisateur associés à chaque avis
   const reviews = await ReviewModel.find()
     .sort("-createdAt")
     .limit(10)
@@ -54,6 +59,7 @@ const fetchRecentReviews = async () => {
       select: "name",
     });
 
+  // Convertir les avis en un tableau d'objets RecentReviews
   const result = reviews.map((review): RecentReviews => {
     return {
       id: review._id.toString(),
@@ -68,12 +74,19 @@ const fetchRecentReviews = async () => {
     };
   });
 
+  // Renvoyer le tableau d'objets converti en JSON
   return JSON.stringify(result);
 };
 
+// Afficher le tableau de bord
 export default async function Dashboard() {
+  // Obtenir les commandes récentes
   const orders = JSON.parse(await fetchRecentOrders());
+
+  // Obtenir les avis récents
   const reviews = JSON.parse(await fetchRecentReviews());
+
+  // Renvoyer le composant Dashboard
   return (
     <div className="flex space-x-6">
       <RecentOrdersList orders={orders} />

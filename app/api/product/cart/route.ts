@@ -1,3 +1,4 @@
+// Importation des dépendances nécessaires
 import startDb from "@lib/db";
 import CartModel from "@models/cartModel";
 import { NewCartRequest } from "@app/types";
@@ -7,23 +8,34 @@ import { NextResponse } from "next/server";
 
 export const POST = async (req: Request) => {
   try {
+    // Authentification de la session utilisateur
     const session = await auth();
     const user = session?.user;
-    if (!user)
+
+    // Vérification de l'utilisateur authentifié
+    if (!user) {
       return NextResponse.json(
-        { error: "unauthorized request!" },
+        { error: "Requête non autorisée!" },
         { status: 401 }
       );
+    }
 
+    // Récupération des données de la requête
     const { productId, quantity } = (await req.json()) as NewCartRequest;
 
-    if (!isValidObjectId(productId) || isNaN(quantity))
-      return NextResponse.json({ error: "Invalid request!" }, { status: 401 });
+    // Validation de l'ID du produit et de la quantité
+    if (!isValidObjectId(productId) || isNaN(quantity)) {
+      return NextResponse.json({ error: "Requête invalide!" }, { status: 401 });
+    }
 
+    // Connexion à la base de données
     await startDb();
+
+    // Recherche du panier de l'utilisateur
     const cart = await CartModel.findOne({ userId: user.id });
+
     if (!cart) {
-      // creating new cart if there is no old cart
+      // Création d'un nouveau panier s'il n'existe pas
       await CartModel.create({
         userId: user.id,
         items: [{ productId, quantity }],
@@ -36,16 +48,17 @@ export const POST = async (req: Request) => {
     );
 
     if (existingItem) {
-      // update quantity if item already exists
+      // Mise à jour de la quantité si l'élément existe déjà
       existingItem.quantity += quantity;
+
       if (existingItem.quantity <= 0) {
-        // Remove item (product) if quantity becomes zero
+        // Suppression de l'élément (produit) si la quantité devient nulle
         cart.items = cart.items.filter(
           (item) => item.productId.toString() !== productId
         );
       }
     } else {
-      // add new item if it doesn't exists
+      // Ajout d'un nouvel élément s'il n'existe pas
       cart.items.push({ productId: productId as any, quantity });
     }
 

@@ -1,3 +1,4 @@
+// Importer les dépendances nécessaires
 import ProductView from "@components/ProductView";
 import ProductModel from "@models/productModel";
 import startDb from "@lib/db";
@@ -12,12 +13,14 @@ import { updateOrCreateHistory } from "@models/historyModel";
 import { auth } from "@/auth";
 import WishlistModel from "@models/wishlistModel";
 
+// Interface définissant les propriétés attendues
 interface Props {
   params: {
     product: string[];
   };
 }
 
+// Fonction asynchrone pour récupérer les informations du produit
 const fetchProduct = async (productId: string) => {
   if (!isValidObjectId(productId)) return redirect("/404");
 
@@ -52,6 +55,7 @@ const fetchProduct = async (productId: string) => {
   });
 };
 
+// Fonction asynchrone pour récupérer les avis sur le produit
 const fetchProductReviews = async (productId: string) => {
   await startDb;
 
@@ -77,6 +81,7 @@ const fetchProductReviews = async (productId: string) => {
   return JSON.stringify(result);
 };
 
+// Fonction asynchrone pour récupérer des produits similaires
 const fetchSimilarProducts = async () => {
   await startDb();
   const products = await ProductModel.find().sort({ rating: -1 }).limit(10);
@@ -90,6 +95,7 @@ const fetchSimilarProducts = async () => {
   });
 };
 
+// Page principale du produit
 export default async function Product({ params }: Props) {
   const { product } = params;
   const productId = product[1];
@@ -120,8 +126,8 @@ export default async function Product({ params }: Props) {
 
       <div className="py-4 space-y-4">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-semibold mb-2">Reviews</h1>
-          <Link href={`/add-review/${productInfo.id}`}>Add Review</Link>
+          <h1 className="text-2xl font-semibold mb-2">Avis</h1>
+          <Link href={`/add-review/${productInfo.id}`}>Ajouter un avis</Link>
         </div>
         <ReviewsList reviews={JSON.parse(reviews)} />
       </div>

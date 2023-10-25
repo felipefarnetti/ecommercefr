@@ -1,3 +1,4 @@
+// Importer les dépendances nécessaires
 import ReviewForm from "@components/ReviewForm";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
@@ -7,9 +8,12 @@ import Image from "next/image";
 import startDb from "@lib/db";
 import ProductModel from "@models/productModel";
 
+// Interface définissant les propriétés attendues
 interface Props {
   params: { id: string };
 }
+
+// Fonction asynchrone pour récupérer l'avis de l'utilisateur sur le produit
 const fetchReview = async (productId: string) => {
   const session = await auth();
   if (!session?.user) {
@@ -38,6 +42,7 @@ const fetchReview = async (productId: string) => {
   }
 };
 
+// Fonction asynchrone pour récupérer les informations du produit
 const fetchProductInfo = async (productId: string) => {
   await startDb();
   const product = await ProductModel.findById(productId);
@@ -49,6 +54,7 @@ const fetchProductInfo = async (productId: string) => {
   };
 };
 
+// Page de soumission d'avis sur un produit
 export default async function Review({ params }: Props) {
   const productId = params.id;
   const review = await fetchReview(productId);

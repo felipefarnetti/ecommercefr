@@ -1,5 +1,5 @@
 "use client";
-
+// Importation des dépendances nécessaires
 import React, { useState, useTransition } from "react";
 import { Button } from "@material-tailwind/react";
 import CartCountUpdater from "@components/CartCountUpdater";
@@ -8,10 +8,12 @@ import useAuth from "@hooks/useAuth";
 import { toast } from "react-toastify";
 import Wishlist from "@ui/Wishlist";
 
+// Interface pour les propriétés (props) du composant
 interface Props {
   wishlist?: boolean;
 }
 
+// Composant pour les options d'achat
 export default function BuyingOptions({ wishlist }: Props) {
   const [quantity, setQuantity] = useState(1);
   const [isPending, startTransition] = useTransition();
@@ -20,15 +22,18 @@ export default function BuyingOptions({ wishlist }: Props) {
   const { loggedIn } = useAuth();
   const router = useRouter();
 
+  // Fonction pour incrémenter la quantité
   const handleIncrement = () => {
     setQuantity((prevCount) => prevCount + 1);
   };
 
+  // Fonction pour décrémenter la quantité
   const handleDecrement = () => {
     if (quantity === 0) return;
     setQuantity((prevCount) => prevCount - 1);
   };
 
+  // Fonction pour ajouter au panier
   const addToCart = async () => {
     if (!productId) return;
 
@@ -45,6 +50,7 @@ export default function BuyingOptions({ wishlist }: Props) {
     router.refresh();
   };
 
+  // Fonction pour passer à la caisse
   const handleCheckout = async () => {
     const res = await fetch("/api/checkout/instant", {
       method: "POST",
@@ -54,11 +60,12 @@ export default function BuyingOptions({ wishlist }: Props) {
     if (!res.ok) {
       toast.error(error);
     } else {
-      // open the checkout url
+      // Ouvrir l'URL de la caisse
       window.location.href = url;
     }
   };
 
+  // Fonction pour mettre à jour la liste de souhaits
   const updateWishlist = async () => {
     if (!productId) return;
 
@@ -90,7 +97,7 @@ export default function BuyingOptions({ wishlist }: Props) {
         variant="text"
         disabled={isPending}
       >
-        Add to Cart
+        Ajouter au panier
       </Button>
       <Button
         disabled={isPending}
@@ -102,7 +109,7 @@ export default function BuyingOptions({ wishlist }: Props) {
         className="rounded-full"
         color="amber"
       >
-        Buy Now
+        Acheter maintenant
       </Button>
 
       <Button

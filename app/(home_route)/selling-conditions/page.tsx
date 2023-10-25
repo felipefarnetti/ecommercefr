@@ -1,64 +1,72 @@
+// Importer les dépendances nécessaires
 import React from "react";
 
 export default function SellingConditions() {
   return (
     <div className="bg-gray-300 text-black p-4 mt-5 rounded-lg text-justify">
-      <h1 className="text-lg mb-2">Jewelry Selling Conditions</h1>
+      <h1 className="text-lg mb-2">Conditions de vente de bijoux</h1>
 
       <p className="text-sm">
-        These are the selling conditions that apply to all jewelry sales made
-        through our website. By placing an order, you agree to be bound by these
-        conditions.
+        Ce sont les conditions de vente qui s'appliquent à toutes les ventes de
+        bijoux effectuées via notre site Web. En passant une commande, vous
+        acceptez d'être lié par ces conditions.
       </p>
 
-      <h2 className="text-lg mb-2 mt-6">Contract Formation</h2>
+      <h2 className="text-lg mb-2 mt-6">Formation du contrat</h2>
 
       <p className="text-sm">
-        A contract between you and us will be formed when we send you an order
-        confirmation email. We may refuse to accept an order for any reason,
-        including but not limited to:
+        Un contrat entre vous et nous sera formé lorsque nous vous enverrons un
+        e-mail de confirmation de commande. Nous nous réservons le droit de
+        refuser une commande pour quelque raison que ce soit, y compris, mais
+        sans s'y limiter :
       </p>
 
       <ul className="text-sm mt-4 space-y-2">
-        <li className="ml-4 list-disc">The jewelry item is not in stock.</li>
         <li className="ml-4 list-disc">
-          The payment information is not valid.
+          L'article de bijoux n'est pas en stock.
         </li>
         <li className="ml-4 list-disc">
-          There is a suspected fraudulent transaction.
+          Les informations de paiement ne sont pas valides.
+        </li>
+        <li className="ml-4 list-disc">
+          Il y a une transaction frauduleuse présumée.
         </li>
       </ul>
 
-      <h2 className="text-lg mb-2 mt-6">Payment</h2>
+      <h2 className="text-lg mb-2 mt-6">Paiement</h2>
 
       <p className="text-sm">
-        We accept all major credit cards and PayPal. Payment must be made in
-        full before your jewelry order is shipped.
+        Nous acceptons toutes les principales cartes de crédit. Le paiement doit
+        être effectué intégralement avant l'expédition de votre commande de
+        bijoux.
       </p>
 
-      <h2 className="text-lg mb-2 mt-6">Shipping</h2>
+      <h2 className="text-lg mb-2 mt-6">Livraison</h2>
 
       <p className="text-sm">
-        We offer free shipping on all jewelry orders over $50. Orders under $50
-        will be charged a flat shipping fee of $5. Jewelry orders are typically
-        shipped within 1-2 business days.
+        Nous offrons la livraison gratuite pour toutes les commandes de bijoux
+        de plus de 120 € . Les commandes de moins de 120 € seront facturées des
+        frais de livraison fixes de 5 €. Les commandes de bijoux sont
+        généralement expédiées dans un délai de 1 à 2 jours ouvrables.
       </p>
 
-      <h2 className="text-lg mb-2 mt-6">Returns</h2>
+      <h2 className="text-lg mb-2 mt-6">Retours</h2>
 
       <p className="text-sm">
-        We offer a 30-day return policy on all jewelry items. If you are not
-        satisfied with your purchase for any reason, you can return it for a
-        full refund. The jewelry item must be returned in its original packaging
-        and in new condition.
+        Nous offrons une politique de retour de 30 jours sur tous les articles
+        de bijoux. Si vous n'êtes pas satisfait de votre achat pour quelque
+        raison que ce soit, vous pouvez le retourner pour un remboursement
+        intégral moins le montant de la livraison. L'article de bijoux doit être
+        retourné dans son emballage d'origine et dans un état neuf.
       </p>
 
-      <h2 className="text-lg mb-2 mt-6">Jewelry Insurance</h2>
+      <h2 className="text-lg mb-2 mt-6">Assurance des bijoux</h2>
 
       <p className="text-sm">
-        All jewelry items purchased from our website are insured in transit. If
-        your jewelry item is lost or damaged during shipping, we will replace it
-        or refund your purchase price.
+        Tous les articles de bijoux achetés sur notre site Web sont assurés
+        pendant le transport. Si votre article de bijoux est perdu ou endommagé
+        pendant la livraison, nous le remplacerons ou vous rembourserons le prix
+        d'achat.
       </p>
     </div>
   );

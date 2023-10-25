@@ -4,7 +4,6 @@ import { Inter } from "next/font/google";
 import Notification from "@components/Notification";
 import AuthSession from "@components/AuthSession";
 import { Analytics } from "@vercel/analytics/react";
-import Footer from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 // export const revalidate = 0;

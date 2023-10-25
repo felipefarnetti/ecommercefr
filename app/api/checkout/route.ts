@@ -1,51 +1,60 @@
-import { getCartItems } from "@lib/cartHelper";
-import { auth } from "@/auth";
-import { isValidObjectId } from "mongoose";
-import { NextResponse } from "next/server";
-import Stripe from "stripe";
+// Importation des dépendances nécessaires
+import { getCartItems } from "@lib/cartHelper"; // Importation de la fonction pour récupérer les articles du panier
+import { auth } from "@/auth"; // Importation de la fonction d'authentification de l'utilisateur
+import { isValidObjectId } from "mongoose"; // Importation de la fonction pour vérifier si un ID est valide
+import { NextResponse } from "next/server"; // Importation de NextResponse pour gérer la réponse HTTP
+import Stripe from "stripe"; // Importation de la bibliothèque Stripe pour les paiements
 
+// Initialisation de la bibliothèque Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2023-08-16",
 });
 
+// Fonction de gestion de la requête POST
 export const POST = async (req: Request) => {
   try {
-    const session = await auth();
-    if (!session?.user)
+    const session = await auth(); // Authentification de l'utilisateur
+    if (!session?.user) {
+      // Vérification de la session utilisateur
       return NextResponse.json(
         {
-          error: "Unauthorized request!",
+          error: "Demande non autorisée!",
         },
         { status: 401 }
       );
+    }
 
     const data = await req.json();
     const cartId = data.cartId as string;
-    // console.log("data=======", data);
 
-    if (!isValidObjectId(cartId))
+    if (!isValidObjectId(cartId)) {
+      // Vérification de la validité de l'ID du panier
       return NextResponse.json(
         {
-          error: "Invalid cart id!",
+          error: "ID de panier non valide!",
         },
         { status: 401 }
       );
+    }
 
-    // fetching cart details
+    // Récupération des détails du panier
     const cartItems = await getCartItems(session.user.id, cartId);
-    if (!cartItems)
+    if (!cartItems) {
+      // Vérification de l'existence du panier
       return NextResponse.json(
         {
-          error: "Cart not found!",
+          error: "Panier introuvable!",
         },
         { status: 404 }
       );
+    }
 
     const line_items = cartItems.products.map((product) => {
+      // Préparation des éléments de ligne pour le paiement
       return {
         price_data: {
           currency: "EUR",
-          unit_amount: product.price * 100,
+          unit_amount: product.price * 100, // Le montant est converti en centimes
           product_data: {
             name: product.title,
             images: [product.thumbnail],
@@ -54,7 +63,6 @@ export const POST = async (req: Request) => {
         quantity: product.qty,
       };
     });
-    // console.log("line_items=======", line_items);
 
     const customer = await stripe.customers.create({
       metadata: {
@@ -64,27 +72,28 @@ export const POST = async (req: Request) => {
       },
     });
 
-    // we need to generate payment link and send to our frontend app
+    // Génération du lien de paiement et redirection vers l'application frontend
     const params: Stripe.Checkout.SessionCreateParams = {
       mode: "payment",
       payment_method_types: ["card"],
       line_items,
-      success_url: process.env.PAYMENT_SUCCESS_URL!,
-      cancel_url: process.env.PAYMENT_CANCEL_URL!,
-      shipping_address_collection: { allowed_countries: ["FR"] },
-      customer: customer.id,
+      success_url: process.env.PAYMENT_SUCCESS_URL!, // URL de succès
+      cancel_url: process.env.PAYMENT_CANCEL_URL!, // URL d'annulation
+      shipping_address_collection: { allowed_countries: ["FR"] }, // Collecte de l'adresse de livraison
+      customer: customer.id, // ID du client
     };
-
-    // console.log("params=======", params);
 
     const checkoutSession = await stripe.checkout.sessions.create(params);
 
-    // console.log("checkoutsession=======", checkoutSession);
-
+    // Renvoi de l'URL du paiement généré
     return NextResponse.json({ url: checkoutSession.url });
   } catch (error) {
+    // Gestion des erreurs
     return NextResponse.json(
-      { error: "Something went wrong, could not checkout!" },
+      {
+        error:
+          "Une erreur s'est produite, impossible de finaliser le paiement!",
+      },
       { status: 500 }
     );
   }

@@ -1,5 +1,6 @@
 "use client";
 
+// Importer les dépendances nécessaires
 import React from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Button, Input } from "@material-tailwind/react";
@@ -13,20 +14,23 @@ import { useRouter } from "next/navigation";
 import AuthFormContainer from "@components/AuthFormContainer";
 import { formikFilterForm } from "@utils/formikHelpers";
 
+// Initialisation des valeurs du formulaire
 const initialValues = {
   email: "",
   password: "",
 };
 
+// Schéma de validation avec Yup
 const validationSchema = yup.object().shape({
-  email: yup.string().email("Invalid email").required("Email is required"),
+  email: yup.string().email("E-mail invalide").required("E-mail requis"),
   password: yup
     .string()
-    .min(8, "Password must be at least 8 characters")
-    .required("Password is required"),
+    .min(8, "Le mot de passe doit comporter au moins 8 caractères")
+    .required("Mot de passe requis"),
 });
 
 const SignIn = () => {
+  // Utilisation du routeur Next.js
   const router = useRouter();
 
   const {
@@ -40,6 +44,7 @@ const SignIn = () => {
   } = useFormik({
     initialValues,
     validationSchema,
+    // Soumission du formulaire côté client
     onSubmit: async (values, action) => {
       const signInRes = await signIn("credentials", {
         ...values,
@@ -47,10 +52,11 @@ const SignIn = () => {
       });
 
       if (signInRes?.error === "CredentialsSignin") {
-        toast.error("Email/Password mismatch!");
+        toast.error("Correspondance E-mail/Mot de passe incorrecte !");
       }
 
       if (!signInRes?.error) {
+        // Rafraîchir la page après la connexion réussie
         router.refresh();
       }
     },
@@ -59,16 +65,18 @@ const SignIn = () => {
   const formErrors: string[] = formikFilterForm(touched, errors, values);
 
   type valuesType = keyof typeof values;
+
+  // Vérification des erreurs de validation pour chaque champ
   const error = (name: valuesType) =>
     errors[name] && touched[name] ? true : false;
 
   const { email, password } = values;
 
   return (
-    <AuthFormContainer title="Sign in" onSubmit={handleSubmit}>
+    <AuthFormContainer title="Se connecter" onSubmit={handleSubmit}>
       <Input
         name="email"
-        label="Email"
+        label="E-mail"
         value={email}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -77,7 +85,7 @@ const SignIn = () => {
       />
       <Input
         name="password"
-        label="Password"
+        label="Mot de passe"
         type="password"
         value={password}
         onChange={handleChange}
@@ -91,11 +99,11 @@ const SignIn = () => {
         type="submit"
         className="w-full"
       >
-        Sign in
+        Se connecter
       </Button>
       <div className="flex items-center justify-between">
-        <Link href="/auth/signup">Sign up</Link>
-        <Link href="/auth/forgot-password">Forget password</Link>
+        <Link href="/auth/signup">S'inscrire</Link>
+        <Link href="/auth/forgot-password">Mot de passe oublié</Link>
       </div>
 
       <div className="">

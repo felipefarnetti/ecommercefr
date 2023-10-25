@@ -1,3 +1,4 @@
+// Importation des dépendances nécessaires
 import { getCartItems } from "@lib/cartHelper";
 import CartModel from "@models/cartModel";
 import OrderModel from "@models/orderModel";
@@ -22,12 +23,14 @@ export const POST = async (req: Request) => {
   let event;
 
   try {
+    // Vérification de la signature et décodage de l'événement Stripe
     event = await stripe.webhooks.constructEvent(
       data,
       signature,
       webhookSecret
     );
   } catch (error) {
+    // En cas d'erreur de vérification
     // console.log(error);
     return NextResponse.json(
       { error: (error as any).message },
@@ -54,7 +57,7 @@ export const POST = async (req: Request) => {
 
       const { cartId, userId, type, product } = customer.metadata;
 
-      // create new order
+      // Création d'une nouvelle commande si le type est "checkout"
       if (type === "checkout") {
         const cartItems = await getCartItems(userId, cartId);
         await OrderModel.create({
@@ -68,11 +71,11 @@ export const POST = async (req: Request) => {
             name: stripeSession.customer_details.name,
           },
           paymentStatus: stripeSession.payment_status,
-          deliveryStatus: "ordered",
+          deliveryStatus: "commandé",
           orderItems: cartItems.products,
         });
 
-        // recount our stock
+        // Mise à jour des stocks des produits
         const updateProductPromises = cartItems.products.map(
           async (product) => {
             return await ProductModel.findByIdAndUpdate(product.id, {
@@ -83,10 +86,11 @@ export const POST = async (req: Request) => {
 
         await Promise.all(updateProductPromises);
 
-        // remove the cart
+        // Suppression du panier
         await CartModel.findByIdAndDelete(cartId);
       }
 
+      // Création d'une commande instantanée si le type est "instant-checkout"
       if (type === "instant-checkout") {
         const productInfo = JSON.parse(product) as unknown as CartProduct;
         await OrderModel.create({
@@ -100,22 +104,27 @@ export const POST = async (req: Request) => {
             name: stripeSession.customer_details.name,
           },
           paymentStatus: stripeSession.payment_status,
-          deliveryStatus: "ordered",
+          deliveryStatus: "commandé",
           orderItems: [{ ...productInfo }],
         });
 
-        // recount our stock
+        // Mise à jour du stock du produit
         await ProductModel.findByIdAndUpdate(productInfo.id, {
           $inc: { quantity: -1 },
         });
       }
     }
 
+    // Réponse de succès
     return NextResponse.json({});
   } catch (error) {
+    // Gestion des erreurs
     // console.error("Error processing webhook event:", error);
     return NextResponse.json(
-      { error: "Something went wrong, can not create order!" },
+      {
+        error:
+          "Quelque chose s'est mal passé, impossible de créer la commande!",
+      },
       { status: 500 }
     );
   }

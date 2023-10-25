@@ -1,5 +1,6 @@
 "use client";
 
+// Importer les dépendances nécessaires
 import React from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Button, Input } from "@material-tailwind/react";
@@ -12,17 +13,18 @@ import { signIn } from "next-auth/react";
 import AuthFormContainer from "@components/AuthFormContainer";
 import { formikFilterForm } from "@utils/formikHelpers";
 
+// Schéma de validation avec Yup
 const validationSchema = yup.object().shape({
-  name: yup.string().required("Name is required"),
-  email: yup.string().email("Invalid email").required("Email is required"),
+  name: yup.string().required("Nom requis"),
+  email: yup.string().email("E-mail invalide").required("E-mail requis"),
   password: yup
     .string()
-    .min(8, "Password must be at least 8 characters")
-    .required("Password is required"),
+    .min(8, "Le mot de passe doit comporter au moins 8 caractères")
+    .required("Mot de passe requis"),
   password2: yup
     .string()
-    .oneOf([yup.ref("password")], "Passwords must match")
-    .required("Confirm password is required"),
+    .oneOf([yup.ref("password")], "Les mots de passe doivent correspondre")
+    .required("Confirmation du mot de passe requise"),
 });
 
 const SignUp = () => {
@@ -37,6 +39,7 @@ const SignUp = () => {
   } = useFormik({
     initialValues: { name: "", email: "", password: "", password2: "" },
     validationSchema,
+    // Soumission du formulaire côté client
     onSubmit: async (values, action) => {
       action.setSubmitting(true);
       const res = await fetch("/api/users", {
@@ -50,6 +53,7 @@ const SignUp = () => {
       };
       if (res.ok) {
         toast.success(message);
+        // Connexion automatique après l'inscription
         await signIn("credentials", { email, password });
       }
       if (!res.ok && error) {
@@ -66,14 +70,15 @@ const SignUp = () => {
 
   const { name, email, password, password2 } = values;
 
+  // Vérification des erreurs de validation pour chaque champ
   const error = (name: valuesType) =>
     errors[name] && touched[name] ? true : false;
 
   return (
-    <AuthFormContainer title="Create New Account" onSubmit={handleSubmit}>
+    <AuthFormContainer title="Créez votre compte" onSubmit={handleSubmit}>
       <Input
         name="name"
-        label="Name"
+        label="Nom"
         value={name}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -82,7 +87,7 @@ const SignUp = () => {
       />
       <Input
         name="email"
-        label="Email"
+        label="E-mail"
         value={email}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -91,7 +96,7 @@ const SignUp = () => {
       />
       <Input
         name="password"
-        label="Password"
+        label="Mot de passe"
         type="password"
         value={password}
         onChange={handleChange}
@@ -101,7 +106,7 @@ const SignUp = () => {
       />
       <Input
         name="password2"
-        label="Confirm Password"
+        label="Confirmer le mot de passe"
         value={password2}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -115,11 +120,11 @@ const SignUp = () => {
         type="submit"
         className="w-full"
       >
-        Sign up
+        S'inscrire
       </Button>
       <div className="flex items-center justify-between">
-        <Link href="/auth/signin">Sign in</Link>
-        <Link href="/auth/forgot-password">Forget password</Link>
+        <Link href="/auth/signin">Se connecter</Link>
+        <Link href="/auth/forgot-password">Mot de passe oublié</Link>
       </div>
       <div className="">
         {formErrors.map((value, index) => {

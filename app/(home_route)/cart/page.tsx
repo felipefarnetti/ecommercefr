@@ -1,3 +1,5 @@
+// Importer les dépendances nécessaires
+
 import CartItems from "@components/CartItems";
 import startDb from "@lib/db";
 import CartModel from "@models/cartModel";
@@ -5,6 +7,7 @@ import { auth } from "@/auth";
 import { Types } from "mongoose";
 import React from "react";
 
+// Fonction asynchrone pour récupérer les produits dans le panier de l'utilisateur
 const fetchCartProducts = async () => {
   const session = await auth();
   if (!session?.user) {
@@ -66,6 +69,7 @@ const fetchCartProducts = async () => {
   return cartItems;
 };
 
+// Page du panier
 export default async function Cart() {
   const cart = await fetchCartProducts();
 
@@ -73,11 +77,11 @@ export default async function Cart() {
     return (
       <div className="py-4">
         <div className="mb-4">
-          <h1 className="text-2xl font-semibold">Your Cart Details</h1>
+          <h1 className="text-2xl font-semibold">Détails de votre panier</h1>
           <hr />
         </div>
         <h1 className="text-center font-semibold text-2xl opacity-40 py-10">
-          Your cart is empty!
+          Votre panier est vide !
         </h1>
       </div>
     );

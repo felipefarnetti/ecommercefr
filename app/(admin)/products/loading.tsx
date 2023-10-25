@@ -1,17 +1,22 @@
+// Importe la bibliothèque React
 import React from "react";
 
+// Définit un tableau des en-têtes de tableau
 const TABLE_HEAD = [
-  "Product",
-  "MRP",
-  "Sale Price",
-  "Quantity",
-  "Category",
-  "Edit",
+  "Produit",
+  "Prix de vente conseillé",
+  "Prix de vente",
+  "Quantité",
+  "Catégorie",
+  "Modifier",
 ];
 
+// Crée un composant React qui charge les produits
 export default function ProductsLoading() {
+  // Crée un tableau de produits fictifs
   const dummyProducts = Array(10).fill("");
 
+  // Retourne une disposition avec un message d'attente et un tableau de produits
   return (
     <div className="py-5 animate-pulse">
       <div className="mb-4 flex flex-col justify-between gap-8 md:flex-row md:items-center">
@@ -27,6 +32,7 @@ export default function ProductsLoading() {
           <thead>
             <tr>
               {TABLE_HEAD.map((head) => (
+                // Commentaire : Affiche l'en-tête du tableau
                 <th
                   key={head}
                   className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
@@ -40,6 +46,7 @@ export default function ProductsLoading() {
           </thead>
           <tbody>
             {dummyProducts.map((_, index) => {
+              // Commentaire : Affiche une ligne de tableau vide pour chaque produit fictif
               const isLast = index === dummyProducts.length - 1;
               const classes = isLast
                 ? "p-4"

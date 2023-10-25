@@ -1,12 +1,17 @@
+// Importer les composants nécessaires
 import OrderModel from "@models/orderModel";
 import startDb from "@lib/db";
 import React from "react";
 import OrderCard, { Order } from "@components/OrderCard";
 import { ObjectId } from "mongoose";
 
+// Obtenir les commandes
 const fetchOrders = async () => {
+  // Connecter à la base de données
   await startDb();
 
+  // Obtenir les commandes triées par date de création décroissante et limitées à 5
+  // Inclure l'utilisateur associé à chaque commande
   const orders = await OrderModel.find().sort("-createdAt").limit(5).populate<{
     userId: {
       _id: ObjectId;
@@ -19,6 +24,7 @@ const fetchOrders = async () => {
     select: "name email avatar",
   });
 
+  // Convertir les commandes en un tableau d'objets Order
   const result: Order[] = orders.map((order): Order => {
     return {
       id: order._id.toString(),
@@ -34,12 +40,18 @@ const fetchOrders = async () => {
       products: order.orderItems,
     };
   });
+
+  // Renvoyer le tableau d'objets converti en JSON
   return JSON.stringify(result);
 };
 
+// Afficher la liste des commandes
 export default async function Orders() {
+  // Obtenir les commandes
   const result = await fetchOrders();
   const orders = JSON.parse(result) as Order[];
+
+  // Renvoyer la liste des commandes
   return (
     <div className="py-4 space-y-4">
       {orders.map((order) => {

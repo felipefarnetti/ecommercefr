@@ -1,5 +1,6 @@
 "use client";
 
+// Importer les dépendances nécessaires
 import React from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Button, Input } from "@material-tailwind/react";
@@ -11,15 +12,21 @@ import Link from "next/link";
 import AuthFormContainer from "@components/AuthFormContainer";
 import { formikFilterForm } from "@utils/formikHelpers";
 
+// Initialisation des valeurs du formulaire
 const initialValues = {
   email: "",
 };
 
+// Schéma de validation avec Yup
 const validationSchema = yup.object().shape({
-  email: yup.string().email("Invalid email").required("Email is required"),
+  email: yup
+    .string()
+    .email("Adresse e-mail invalide.")
+    .required("L'adresse e-mail est requise."),
 });
 
 const ForgotPassword = () => {
+  // Utilisation de useFormik pour gérer le formulaire
   const {
     values,
     isSubmitting,
@@ -32,6 +39,7 @@ const ForgotPassword = () => {
   } = useFormik({
     initialValues,
     validationSchema,
+    // Soumission du formulaire côté client
     onSubmit: async (values, action) => {
       action.setSubmitting(true);
       const res = await fetch("/api/users/forgot-password", {
@@ -44,9 +52,11 @@ const ForgotPassword = () => {
         error: string;
       };
       if (res.ok) {
+        // Affichage d'un message de succès
         toast.success(message);
       }
       if (!res.ok && error) {
+        // Affichage d'un message d'erreur
         toast.error(error);
       }
       action.setSubmitting(false);
@@ -57,16 +67,20 @@ const ForgotPassword = () => {
 
   type valuesType = keyof typeof values;
 
+  // Vérification des erreurs de validation pour chaque champ
   const error = (name: valuesType) =>
     errors[name] && touched[name] ? true : false;
 
   const { email } = values;
 
   return (
-    <AuthFormContainer title="Submit registered email" onSubmit={handleSubmit}>
+    <AuthFormContainer
+      title="Veuillez rentrer votre adresse mail"
+      onSubmit={handleSubmit}
+    >
       <Input
         name="email"
-        label="Email"
+        label="E-mail"
         value={email}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -79,18 +93,18 @@ const ForgotPassword = () => {
         type="submit"
         className="w-full"
       >
-        Submit Email
+        Envoyer l'e-mail
       </Button>
       <div className="flex items-center justify-between">
-        <Link href="/auth/signup">Sign up</Link>
-        <Link href="/auth/signin">Sign in</Link>
+        <Link href="/auth/signup">S'inscrire</Link>
+        <Link href="/auth/signin">Se connecter</Link>
       </div>
       <div className="">
         {formErrors.map((value, index) => {
           return (
             <div
               key={index}
-              className="space-x-1 flex items-center text-red-500 "
+              className="space-x-1 flex items-center text-red-500"
             >
               <XMarkIcon className="w-4 h-4" />
               <p className="text-xs">{value}</p>

@@ -1,11 +1,14 @@
+// Importation des dépendances nécessaires
 import React, { FC, FormEventHandler, ReactNode } from "react";
 
+// Interface pour les propriétés (props) du composant
 interface Props {
   title: string;
   children: ReactNode;
   onSubmit?: FormEventHandler<HTMLFormElement>;
 }
 
+// Composant pour le conteneur du formulaire d'authentification
 const AuthFormContainer: FC<Props> = ({ title, children, onSubmit }) => {
   return (
     <form

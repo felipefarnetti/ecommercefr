@@ -73,7 +73,7 @@ export default function ProfileMenu({ menuItems, avatar }: Props) {
               className="flex items-center gap-2 rounded"
             >
               <RectangleGroupIcon className="h-4 w-4" />
-              <span>Dashboard</span>
+              <span>Backoffice</span>
             </MenuItem>
           </Link>
         ) : null}
@@ -82,7 +82,7 @@ export default function ProfileMenu({ menuItems, avatar }: Props) {
           <SignOutButton>
             <p className="flex items-center gap-2 rounded">
               <PowerIcon className="h-4 w-4" />
-              <span>Sign Out</span>
+              <span>Se déconnecter</span>
             </p>
           </SignOutButton>
         </MenuItem>

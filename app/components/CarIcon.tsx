@@ -1,15 +1,18 @@
+// Importation des dépendances nécessaires
 import React from "react";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
+// Interface pour les propriétés (props) du composant
 interface Props {
   cartItems: number;
 }
 
+// Composant pour l'icône du panier d'achat
 export default function CartIcon({ cartItems }: Props) {
   return (
     <Link
-      className="bg-amber-500 w-6 h-6 lg:w-8 lg:h-8 flex items-center justify-center p-2 rounded-full relative"
+      className="bg-amber-500 w-6 h-6 lg:w-8 lg:h-8 flex items-center justify-center p-2 rounded-full border border-gray-700 relative"
       href="/cart"
     >
       <ShoppingCartIcon className="w-4 h-4" />

@@ -1,5 +1,5 @@
 "use client";
-
+// Importation des dépendances nécessaires
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import {
@@ -20,34 +20,38 @@ import CartIcon from "../CarIcon";
 import useAuth from "@hooks/useAuth";
 import SearchForm from "../SearchForm";
 
+// Interface pour les propriétés (props) du composant
 interface Props {
-  cartItemsCount: number;
-  avatar?: string;
+  cartItemsCount: number; // Nombre d'articles dans le panier
+  avatar?: string; // Avatar de l'utilisateur
 }
 
+// Tableau des éléments de menu pour le profil de l'utilisateur
 export const menuItems = [
   {
     href: "/profile",
     icon: <UserCircleIcon className="h-4 w-4" />,
-    label: "My Profile",
+    label: "Mon profil",
   },
   {
     href: "/profile/orders",
     icon: <ShoppingBagIcon className="h-4 w-4" />,
-    label: "Orders",
+    label: "Mes commandes",
   },
   {
     href: "/profile/wishlist",
     icon: <HeartIcon className="h-4 w-4" />,
-    label: "Wishlist",
+    label: "Liste d'envies",
   },
 ];
 
+// Composant principal de la barre de navigation
 export default function NavUI({ cartItemsCount, avatar }: Props) {
-  const [open, setOpen] = useState(false);
-  const { loading, loggedIn } = useAuth();
+  const [open, setOpen] = useState(false); // État local pour gérer l'ouverture du menu
+  const { loading, loggedIn } = useAuth(); // Utilisation du hook useAuth pour gérer l'état d'authentification
 
   useEffect(() => {
+    // Gestion du redimensionnement de la fenêtre pour fermer le menu sur les écrans larges
     const onResize = () => window.innerWidth >= 960 && setOpen(false);
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
@@ -55,13 +59,14 @@ export default function NavUI({ cartItemsCount, avatar }: Props) {
 
   return (
     <>
+      {/* Barre de navigation */}
       <MaterialNav className="mx-auto max-w-screen-xl px-4 py-4 mb-4 bg-gradient-to-r from-blue-300 to-pink-100">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Link
             href="/"
             className="mr-4 cursor-pointer py-1.5 lg:ml-2 font-semibold"
           >
-            My Store
+            NOM ou LOGO
           </Link>
 
           <div className="flex-1 flex justify-center">
@@ -79,13 +84,13 @@ export default function NavUI({ cartItemsCount, avatar }: Props) {
             ) : (
               <>
                 <Link className="px-4 py-1" href="/auth/signin">
-                  Sign in
+                  Se connecter
                 </Link>
                 <Link
                   className="bg-blue-500 text-white px-4 py-1 rounded"
                   href="/auth/signup"
                 >
-                  Sign up
+                  S'inscrire
                 </Link>
               </>
             )}
@@ -109,6 +114,8 @@ export default function NavUI({ cartItemsCount, avatar }: Props) {
           </div>
         </div>
       </MaterialNav>
+
+      {/* Menu de navigation mobile */}
       <div className="lg:hidden">
         <MobileNav
           menuItems={menuItems}

@@ -25,7 +25,7 @@ interface OrderDocument extends Document {
     name: string;
   };
   paymentStatus: string;
-  deliveryStatus: "delivered" | "ordered" | "shipped";
+  deliveryStatus: "livré" | "commandé" | "expédié";
   orderItems: {
     id: string;
     title: string;
@@ -57,8 +57,8 @@ const orderSchema = new Schema<OrderDocument>(
     paymentStatus: { type: String, required: true },
     deliveryStatus: {
       type: String,
-      enum: ["delivered", "ordered", "shipped"],
-      default: "ordered",
+      enum: ["livré", "commandé", "expédié"],
+      default: "commandé",
     },
     orderItems: [
       {

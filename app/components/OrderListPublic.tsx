@@ -20,7 +20,7 @@ export interface Orders {
   paymentStatus: string;
   date: string;
   total: number;
-  deliveryStatus: "ordered" | "delivered" | "shipped";
+  deliveryStatus: "commandé" | "livré" | "expédié";
 }
 
 export default function OrderListPublic({ orders }: { orders: Orders[] }) {
