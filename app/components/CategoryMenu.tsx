@@ -1,4 +1,5 @@
 "use client";
+// Importation des dépendances nécessaires
 import React from "react";
 import HorizontalMenu from "./HorizontalMenu";
 import categories from "@utils/categories";

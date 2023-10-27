@@ -1,3 +1,4 @@
+// Importation des dépendances nécessaires
 import React, { ReactNode } from "react";
 
 interface Props {

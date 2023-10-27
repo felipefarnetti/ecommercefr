@@ -1,4 +1,5 @@
 "use client";
+// Importation des dépendances nécessaires
 import React, { useState } from "react";
 import CartCountUpdater from "@components/CartCountUpdater";
 import Image from "next/image";

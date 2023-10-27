@@ -1,4 +1,5 @@
 "use client";
+// Importation des dépendances nécessaires
 import { Button, CardBody, Typography } from "@material-tailwind/react";
 import Link from "next/link";
 import React, { useTransition } from "react";

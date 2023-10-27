@@ -1,5 +1,5 @@
 "use client";
-
+// Importation des dépendances nécessaires
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 

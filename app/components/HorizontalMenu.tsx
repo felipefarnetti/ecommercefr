@@ -1,4 +1,5 @@
 "use client";
+// Importation des dépendances nécessaires
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
 import React, { useContext } from "react";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";

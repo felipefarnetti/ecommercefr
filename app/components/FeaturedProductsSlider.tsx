@@ -1,4 +1,5 @@
 "use client";
+// Importation des dépendances nécessaires
 import { Button } from "@material-tailwind/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
