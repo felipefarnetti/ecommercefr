@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -21,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <AuthSession>
-      <html lang="en">
+      <html lang="fr">
         <body
           className={`${inter.className} bg-green-50`}
           // si on veut couleur de backgroud sinon on laisse juste les crochets inter ...
