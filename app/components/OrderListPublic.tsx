@@ -44,7 +44,10 @@ export default function OrderListPublic({ orders }: { orders: Orders[] }) {
             <div className="flex justify-between items-center bg-blue-gray-400 text-white p-2">
               <p>Commandé le: {formattedDate}</p>
               <p>TOTAL {formatPrice(order.total)}</p>
-              <Chip value={order.paymentStatus} color="amber" />
+              <Chip
+                value={order.paymentStatus === "paid" ? "payé" : "non payé"}
+                color="amber"
+              />
             </div>
 
             {order.products.map((p) => {

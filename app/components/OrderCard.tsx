@@ -116,7 +116,7 @@ export default function OrderCard({ order, disableUpdate = true }: Props) {
             disabled={disableUpdate || isPending}
             value={order.deliveryStatus}
             className="uppercase"
-            label="Delivery Status"
+            label="Status de la commande"
             onChange={(deliveryStatus) => {
               startTransition(async () => {
                 await fetch("/api/order/update-status", {
