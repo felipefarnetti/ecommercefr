@@ -47,7 +47,7 @@ export const POST = async (req: Request) => {
     // Envoi du lien de réinitialisation par e-mail
     await sendEmail({
       profile: { name: user.name, email: user.email },
-      subject: "forget-password",
+      subject: "mdp-oublié",
       linkUrl: resetPassLink,
     });
 

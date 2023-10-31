@@ -66,7 +66,7 @@ export default function ProfileForm({ id, name, avatar, email }: Props) {
           color="blue"
           disabled={isPending}
         >
-          Submit
+          Envoyer
         </Button>
       ) : null}
     </form>

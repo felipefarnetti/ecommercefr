@@ -124,7 +124,7 @@ export const GET = async (req: Request) => {
     // Envoi d'un e-mail de vérification à l'utilisateur
     await sendEmail({
       profile: { name: user.name, email: user.email },
-      subject: "verification",
+      subject: "vérification",
       linkUrl: verificationUrl,
     });
 

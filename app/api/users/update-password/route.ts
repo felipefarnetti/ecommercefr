@@ -67,7 +67,7 @@ export const POST = async (req: Request) => {
     // Envoi d'un e-mail de confirmation de changement de mot de passe
     await sendEmail({
       profile: { name: user.name, email: user.email },
-      subject: "password-changed",
+      subject: "mdp-modifié",
     });
 
     // Réponse de succès

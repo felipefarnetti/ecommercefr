@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import dateFormat from "dateformat";
+// import dateFormat from "dateformat";
 import ReviewStars from "@components/ReviewStars";
 
 interface Review {
@@ -36,7 +36,11 @@ export default function ReviewsList({ reviews }: Props) {
               <div>
                 <p className="font-semibold">{review.userInfo.name}</p>
                 <p className="text-xs">
-                  {dateFormat(review.date, "dd mmm  yyyy")}
+                  {new Date(review.date).toLocaleDateString("fr-FR", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
                 </p>
               </div>
             </div>

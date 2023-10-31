@@ -12,12 +12,12 @@ import { useRouter } from "next/navigation";
 const validationSchema = yup.object().shape({
   password1: yup
     .string()
-    .required("Password is required")
-    .min(8, "Password must be at least 8 characters long"),
+    .required("Mot de passe necessaire")
+    .min(8, "Le mot de passe doit avoir au moins 8 caractères"),
   password2: yup
     .string()
-    .oneOf([yup.ref("password1")], "Passwords must match")
-    .required("Confirm password is required"),
+    .oneOf([yup.ref("password1")], "Les mot de passes ne correspondent pas")
+    .required("Confirmation du password necessaire"),
 });
 
 interface Props {
@@ -78,10 +78,13 @@ export default function UpdatePassword({ token, userId }: Props) {
   };
 
   return (
-    <FormContainer title="Reset password" onSubmit={handleSubmit}>
+    <FormContainer
+      title="Réinitialiser le mot de passe"
+      onSubmit={handleSubmit}
+    >
       <Input
         name="password1"
-        label="Password"
+        label="Mot de passe"
         value={password1}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -91,7 +94,7 @@ export default function UpdatePassword({ token, userId }: Props) {
       />
       <Input
         name="password2"
-        label="Confirm Password"
+        label="Confirmez votre mot de passe"
         value={password2}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -105,7 +108,7 @@ export default function UpdatePassword({ token, userId }: Props) {
         color="indigo"
         disabled={isSubmitting}
       >
-        Reset Password
+        Réinitialiser le mot de passe
       </Button>
       <div className="">
         {Object.keys(errorsToRender).map((item) => {

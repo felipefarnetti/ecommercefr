@@ -22,7 +22,7 @@ export default function ReviewForm({ productId, initialValue }: Props) {
     e.preventDefault();
     const { comment, rating } = review;
     if (!rating) {
-      return toast.error("Rating is missing!");
+      return toast.error("Évaluation manquante!");
     }
     setIsPending(true);
 
@@ -36,7 +36,7 @@ export default function ReviewForm({ productId, initialValue }: Props) {
     if (!res.ok) {
       return toast.error(error);
     } else {
-      toast.success("Review submitted successfully");
+      toast.success("Évaluation enregistré avec succès");
       // Reload the page after a successful submission
       window.location.reload();
     }
@@ -53,7 +53,7 @@ export default function ReviewForm({ productId, initialValue }: Props) {
   return (
     <form onSubmit={submitReview} className="space-y-2">
       <div>
-        <h3 className="font-semibold text-lg mb-1">Overall Rating</h3>
+        <h3 className="font-semibold text-lg mb-1">Note globale</h3>
         <Rating
           ratedIcon={<RatedIcon className="h-8 w-8" />}
           unratedIcon={<UnratedIcon className="h-8 w-8" />}
@@ -63,9 +63,9 @@ export default function ReviewForm({ productId, initialValue }: Props) {
       </div>
 
       <div>
-        <h3 className="font-semibold text-lg mb-1">Write a written review</h3>
+        <h3 className="font-semibold text-lg mb-1">Laisser une évaluation</h3>
         <textarea
-          placeholder="Write what you like or dislike about the product."
+          placeholder="Écrivez ce que vous aimez ou pas au sujet du produit."
           className="w-full resize-none border p-2 rounded border-blue-gray-500 outline-blue-400 transition"
           rows={4}
           value={review.comment}
@@ -76,10 +76,10 @@ export default function ReviewForm({ productId, initialValue }: Props) {
       </div>
       <div className="text-right">
         <Button disabled={isPending} type="submit">
-          Submit
+          Envoyer
         </Button>
         <Button className="ml-2 bg-yellow-600 text-black" onClick={goBack}>
-          Go Back
+          Retour
         </Button>
       </div>
     </form>

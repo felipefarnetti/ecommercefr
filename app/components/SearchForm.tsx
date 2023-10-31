@@ -23,7 +23,7 @@ export default function SearchForm({ submitTo }: Props) {
       className="w-full"
     >
       <Input
-        label="Search"
+        label="Recherche"
         icon={
           <button>
             <MagnifyingGlassIcon className="h-5 w-5" />

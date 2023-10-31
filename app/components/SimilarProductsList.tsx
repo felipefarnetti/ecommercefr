@@ -16,7 +16,7 @@ export default function SimilarProductsList({ products }: Props) {
   return (
     <div className="py-6">
       <h1 className="font-semibold text-lg mb-4 text-blue-gray-600">
-        Also you may like
+        Ça pourrait vous plaire
       </h1>
       <HorizontalMenu>
         {products.map((product) => {

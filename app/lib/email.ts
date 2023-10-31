@@ -10,12 +10,12 @@ const client = new MailtrapClient({ endpoint: ENDPOINT, token: TOKEN });
 
 const sender = {
   email: "admin@farnetti.fr",
-  name: "My shop name",
+  name: "Ma boutique",
 };
 
 interface EmailOptions {
   profile: profile;
-  subject: "verification" | "forget-password" | "password-changed";
+  subject: "vérification" | "mdp-oublié" | "mdp-modifié";
   linkUrl?: string;
 }
 
@@ -50,11 +50,11 @@ const sendEmailVerificationLink = async (profile: profile, linkUrl: string) => {
     to: recipients,
     template_uuid: "e7b80fae-d6d4-443c-bbe2-9bbd62af774c",
     template_variables: {
-      subject: "Verify Your Email",
+      subject: "Vérifiez votre adresse mail",
       user_name: profile.name,
       link: linkUrl,
-      btn_title: "Click Me to Verify Email",
-      company_name: "Next Ecom",
+      btn_title: "Cliquer pour vérifier votre email",
+      company_name: "Ma boutique",
     },
   });
 };
@@ -79,11 +79,11 @@ const sendForgetPasswordLink = async (profile: profile, linkUrl: string) => {
     to: recipients,
     template_uuid: "dfa2ef7a-f2d7-47d5-98f9-9f738b7523b1",
     template_variables: {
-      subject: "Forget Password Link",
+      subject: "Réinitialisation du mot de passe",
       user_name: profile.name,
       link: linkUrl,
-      btn_title: "Reset Password",
-      company_name: "Next Ecom",
+      btn_title: "Reinitialiser mot de passe",
+      company_name: "Ma boutique",
     },
   });
 };
@@ -108,11 +108,11 @@ const sendUpdatePasswordConfirmation = async (profile: profile) => {
     to: recipients,
     template_uuid: "cec7037d-ffeb-43cc-878e-3d5dc86653c5",
     template_variables: {
-      subject: "Password Reset Successful",
+      subject: "Mot de passé réinitialisé avec succès",
       user_name: profile.name,
       link: process.env.SIGN_IN_URL!,
-      btn_title: "Sign in",
-      company_name: "Next Ecom",
+      btn_title: "Se connecter",
+      company_name: "Ma boutique",
     },
   });
 };
@@ -121,11 +121,11 @@ export const sendEmail = (options: EmailOptions) => {
   const { profile, subject, linkUrl } = options;
 
   switch (subject) {
-    case "verification":
+    case "vérification":
       return sendEmailVerificationLink(profile, linkUrl!);
-    case "forget-password":
+    case "mdp-oublié":
       return sendForgetPasswordLink(profile, linkUrl!);
-    case "password-changed":
+    case "mdp-modifié":
       return sendUpdatePasswordConfirmation(profile);
   }
 };

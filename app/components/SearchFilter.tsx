@@ -40,14 +40,14 @@ export default function SearchFilter({ children }: Props) {
       }}
       className="md:flex py-4 space-y-4"
     >
-      <div className="md:border-r md:border-b-0 border-b border-gray-700 p-4 md:space-y-4 md:block flex space-x-8 md:space-x-0 sticky top-0 md:h-screen z-10 bg-white">
+      <div className="md:border-r md:border-b-0 border-b border-gray-700 p-2 md:space-y-4 md:block flex space-x-8 md:space-x-0 sticky top-0 md:h-screen z-10 bg-white">
         <div>
-          <p className="font-semibold">Price</p>
+          <p className="font-semibold">Prix</p>
           <div>
             <div>
               <Radio
                 name="type"
-                label="Low to high"
+                label="-   >   +"
                 defaultChecked={lowToHigh}
                 color="blue-gray"
                 className="text-sm"
@@ -58,7 +58,7 @@ export default function SearchFilter({ children }: Props) {
             <div>
               <Radio
                 name="type"
-                label="High to low"
+                label="+   <   -"
                 color="blue-gray"
                 onChange={() => setPriceFilter("desc")}
                 defaultChecked={highToLow}
@@ -67,7 +67,7 @@ export default function SearchFilter({ children }: Props) {
             </div>
           </div>
         </div>
-
+        {/* 
         <div className="flex-1">
           <p className="font-semibold">
             Rating {rating[0]}-{rating[1]}
@@ -95,25 +95,25 @@ export default function SearchFilter({ children }: Props) {
               setRating(value as number[]);
             }}
           />
-        </div>
+        </div> */}
 
         <div>
           <button
             type="submit"
             className="text-blue-gray-600 text-center w-full p-1 border rounded mt-6"
           >
-            Apply Filter
+            Appliquer filtre
           </button>
           <button
             onClick={() => {
-              setApplyRatingFilter(false);
-              setRating([0, 5]);
+              // setApplyRatingFilter(false);
+              // setRating([0, 5]);
               router.push("/search?query=" + query);
             }}
             type="button"
             className="text-blue-gray-600 text-center w-full p-1 border rounded mt-6"
           >
-            Clear Filter
+            Supprimer filtre
           </button>
         </div>
       </div>

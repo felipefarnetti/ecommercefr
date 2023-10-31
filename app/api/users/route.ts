@@ -34,7 +34,7 @@ export const POST = async (req: Request) => {
   // Envoi d'un e-mail de vérification à l'utilisateur
   await sendEmail({
     profile: { name: newUser.name, email: newUser.email },
-    subject: "verification",
+    subject: "vérification",
     linkUrl: verificationUrl,
   });
 

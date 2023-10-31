@@ -34,8 +34,8 @@ const Verify: FC<Props> = ({ searchParams }) => {
 
   return (
     <div className=" text-3xl opacity-70 text-center animate-pulse p-5">
-      Please wait...
-      <p> We are verifying your email!</p>
+      Patientez .....
+      <p>Vérification de votre adresse mail!</p>
     </div>
   );
 };

@@ -18,8 +18,8 @@ const RecentOrdersList = ({ orders }: Props) => {
   return (
     <div className="space-y-4 w-96 rounded overflow-hidden shadow-lg">
       <div className="bg-blue-gray-600 text-white p-2 flex justify-between items-center">
-        <h2 className="font-semibold text-lg">Recent Orders</h2>
-        <Link href="/orders">See all</Link>
+        <h2 className="font-semibold text-lg">Commandes récentes</h2>
+        <Link href="/orders">Voir tout</Link>
       </div>
 
       <div className="p-4 space-y-4 mb-2">
@@ -31,10 +31,10 @@ const RecentOrdersList = ({ orders }: Props) => {
               <div>
                 {truncate(products[0].title, 40)}{" "}
                 {extraProductsLength > 0
-                  ? `and ${extraProductsLength} more items.`
+                  ? `et ${extraProductsLength} produit/s en plus.`
                   : ""}
               </div>
-              <div className="text-sm text-right">By {customerInfo.name}</div>
+              <div className="text-sm text-right">par {customerInfo.name}</div>
             </div>
           );
         })}

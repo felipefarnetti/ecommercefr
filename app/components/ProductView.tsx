@@ -58,7 +58,7 @@ export default function ProductView({
 
         <div className="flex py-4">
           {outOfStock ? (
-            <div className="uppercase text-gray-700">Out of stock </div>
+            <div className="uppercase text-gray-700">Hors stock</div>
           ) : (
             <BuyingOptions wishlist={isWishlist} />
           )}

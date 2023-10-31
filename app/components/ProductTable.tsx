@@ -39,12 +39,12 @@ const formatPrice = (amount: number) => {
 };
 
 const TABLE_HEAD = [
-  "Product",
-  "MRP",
-  "Sale Price",
-  "Quantity",
-  "Category",
-  "Edit",
+  "Produit",
+  "Prix",
+  "Pix soldé",
+  "Quantité",
+  "Categorie",
+  "Modifier",
 ];
 
 interface Props {
@@ -81,7 +81,7 @@ export default function ProductTable(props: Props) {
       <div className="mb-4 flex flex-col justify-between gap-8 md:flex-row md:items-center">
         <div>
           <Typography variant="h5" color="blue-gray">
-            Products
+            Produits
           </Typography>
         </div>
         <div className="flex w-full shrink-0 gap-2 md:w-max">
@@ -91,7 +91,7 @@ export default function ProductTable(props: Props) {
             className="select-none font-bold text-center uppercase transition-all text-xs py-2 px-4 rounded-lg bg-blue-500 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none flex items-center gap-3"
           >
             <PlusIcon strokeWidth={2} className="h-4 w-4" />{" "}
-            <span>Add New</span>
+            <span>Ajouter</span>
           </Link>
         </div>
       </div>
@@ -198,20 +198,20 @@ export default function ProductTable(props: Props) {
               onClick={handleOnPrevPress}
               variant="text"
             >
-              Previous
+              Précédente
             </Button>
             <Button
               disabled={!hasMore}
               onClick={handleOnNextPress}
               variant="text"
             >
-              Next
+              Suivante
             </Button>
           </div>
           {/* Total number of products (moved below the buttons) */}
           <div className="mt-4">
             <Typography variant="small" color="blue-gray">
-              Total Products: {totalProducts}
+              Total : {totalProducts}
             </Typography>
           </div>
         </CardFooter>
