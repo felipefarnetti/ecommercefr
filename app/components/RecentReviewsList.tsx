@@ -31,7 +31,7 @@ const RecentReviewsList = ({ reviews }: Props) => {
         {reviews.map((review) => {
           return (
             <div key={review.id}>
-              <div className="flex space-x-1">
+              <div className="flex space-x-1 mb-2">
                 <Image
                   src={review.product.thumbnail}
                   width={50}

@@ -121,7 +121,7 @@ export default function ProductCard({ product }: Props) {
           }}
           disabled={isPending}
         >
-          Add to Cart
+          Ajouter au panier
         </Button>
         <Button
           disabled={isPending}
@@ -132,7 +132,7 @@ export default function ProductCard({ product }: Props) {
           }}
           className="bg-blue-400 text-white shadow-none hover:shadow-none hover:scale-105 focus:shadow-none focus:scale-105 active:scale-100"
         >
-          Buy Now
+          Acheter maintenant
         </Button>
       </CardFooter>
     </Card>

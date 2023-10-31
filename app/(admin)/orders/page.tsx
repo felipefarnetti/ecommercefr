@@ -12,12 +12,13 @@ const fetchOrders = async () => {
 
   // Obtenir les commandes triées par date de création décroissante et limitées à 5
   // Inclure l'utilisateur associé à chaque commande
-  const orders = await OrderModel.find().sort("-createdAt").limit(5).populate<{
+  const orders = await OrderModel.find().sort("-createdAt").limit(10).populate<{
     userId: {
       _id: ObjectId;
       name: string;
       email: string;
       avatar?: { url: string };
+      createdAt: Date;
     };
   }>({
     path: "userId",
@@ -30,6 +31,7 @@ const fetchOrders = async () => {
       id: order._id.toString(),
       deliveryStatus: order.deliveryStatus,
       subTotal: order.totalAmount,
+      createdAt: order.createdAt,
       customer: {
         id: order.userId._id.toString(),
         name: order.userId.name,

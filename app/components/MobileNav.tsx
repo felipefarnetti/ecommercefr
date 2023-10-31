@@ -26,9 +26,9 @@ export function MobileNav({ open, onClose, menuItems }: Props) {
   return (
     <>
       <Drawer open={open} onClose={onClose}>
-        <div className="mb-2 flex items-center justify-between p-4 z-50">
+        <div className="mb-2 flex items-center justify-between p-4 z-50 ml-2">
           <Typography variant="h5" color="blue-gray">
-            My Store
+            Ma Boutique
           </Typography>
           <IconButton variant="text" color="blue-gray" onClick={onClose}>
             <XMarkIcon strokeWidth={2} className="h-5 w-5" />
@@ -52,7 +52,7 @@ export function MobileNav({ open, onClose, menuItems }: Props) {
                 <ListItemPrefix>
                   <RectangleGroupIcon className="h-4 w-4" />
                 </ListItemPrefix>
-                Dashboard
+                BackOffice
               </ListItem>
             </Link>
           ) : null}
@@ -63,7 +63,7 @@ export function MobileNav({ open, onClose, menuItems }: Props) {
                 <ListItemPrefix>
                   <PowerIcon className="h-5 w-5" />
                 </ListItemPrefix>
-                Sign Out
+                Se Déconnecter
               </ListItem>
             </SignOutButton>
           ) : (
@@ -72,13 +72,13 @@ export function MobileNav({ open, onClose, menuItems }: Props) {
                 className="px-4 py-1 flex-1 text-center"
                 href="/auth/signin"
               >
-                Sign in
+                Se connecter
               </Link>
               <Link
                 className="bg-blue-500 text-white px-4 py-1 rounded flex-1 text-center"
                 href="/auth/signup"
               >
-                Sign up
+                {"S'inscrire"}
               </Link>
             </div>
           )}

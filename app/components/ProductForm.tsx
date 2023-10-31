@@ -59,6 +59,7 @@ export default function ProductForm(props: Props) {
 
   const fields = productInfo.bulletPoints;
 
+  // Fonction pour ajouter plus de mots clés
   const addMoreBulletPoints = () => {
     setProductInfo({
       ...productInfo,
@@ -66,6 +67,7 @@ export default function ProductForm(props: Props) {
     });
   };
 
+  // Fonction pour supprimer un mot clé
   const removeBulletPoint = (indexToRemove: number) => {
     const points = [...productInfo.bulletPoints];
     const filteredPoints = points.filter((_, index) => index !== indexToRemove);
@@ -75,6 +77,7 @@ export default function ProductForm(props: Props) {
     });
   };
 
+  // Fonction pour mettre à jour la valeur d'un mot clé
   const updateBulletPointValue = (value: string, index: number) => {
     const oldValues = [...fields];
     oldValues[index] = value;
@@ -82,16 +85,17 @@ export default function ProductForm(props: Props) {
     setProductInfo({ ...productInfo, bulletPoints: [...oldValues] });
   };
 
+  // Fonction pour supprimer une image
   const removeImage = async (index: number) => {
     if (!productImagesSource) return;
 
-    // if image is from cloud we want to remove it from cloud.
+    // Si l'image provient du cloud, nous voulons la supprimer du cloud.
     const imageToRemove = productImagesSource[index];
     const cloudSourceUrl = "https://res.cloudinary.com";
     if (imageToRemove.startsWith(cloudSourceUrl)) {
       onImageRemove && onImageRemove(imageToRemove);
     } else {
-      // if this image is from local state we want to update local state
+      // Si cette image provient de l'état local, nous voulons mettre à jour l'état local
       const fileIndexDifference =
         productImagesSource.length - imageFiles.length;
       const indexToRemove = index - fileIndexDifference;
@@ -102,7 +106,7 @@ export default function ProductForm(props: Props) {
       setImageFiles([...newImageFiles]);
     }
 
-    // also we want to update UI
+    // Nous voulons également mettre à jour l'interface utilisateur
     const newImagesSource = productImagesSource.filter((_, i) => {
       if (i !== index) return true;
     });
@@ -110,9 +114,11 @@ export default function ProductForm(props: Props) {
     setProductImagesSource([...newImagesSource]);
   };
 
+  // Fonction pour obtenir le titre du bouton en fonction de l'action (création ou mise à jour)
   const getBtnTitle = () => {
-    if (isForUpdate) return isPending ? "Updating" : "Update";
-    return isPending ? "Creating" : "Create";
+    if (isForUpdate)
+      return isPending ? "En train de mettre à jour" : "Mise à jour";
+    return isPending ? "En train de créer" : "Créer";
   };
 
   useEffect(() => {
@@ -124,6 +130,7 @@ export default function ProductForm(props: Props) {
     }
   }, []);
 
+  // Gestionnaire de changement d'images
   const onImagesChange: ChangeEventHandler<HTMLInputElement> = ({ target }) => {
     const files = target.files;
     if (files) {
@@ -137,6 +144,7 @@ export default function ProductForm(props: Props) {
     }
   };
 
+  // Gestionnaire de changement de l'image principale
   const onThumbnailChange: ChangeEventHandler<HTMLInputElement> = ({
     target,
   }) => {
@@ -150,7 +158,7 @@ export default function ProductForm(props: Props) {
 
   return (
     <div className="p-4 max-w-3xl mx-auto">
-      <h1 className="mb-2 text-xl">Add new product</h1>
+      <h1 className="mb-2 text-xl">Ajouter un noouveau produit</h1>
 
       <form
         action={() =>
@@ -161,14 +169,14 @@ export default function ProductForm(props: Props) {
         className="space-y-6"
       >
         <div className="space-y-4">
-          <h3>Poster</h3>
+          <h3>Photo principale</h3>
           <ImageSelector
             id="thumb"
             images={thumbnailSource}
             onChange={onThumbnailChange}
           />
 
-          <h3>Images</h3>
+          <h3>Photos</h3>
           <ImageSelector
             multiple
             id="images"
@@ -179,7 +187,7 @@ export default function ProductForm(props: Props) {
         </div>
 
         <Input
-          label="Title"
+          label="Titre"
           value={productInfo.title}
           onChange={({ target }) =>
             setProductInfo({ ...productInfo, title: target.value })
@@ -201,7 +209,7 @@ export default function ProductForm(props: Props) {
             if (category) setProductInfo({ ...productInfo, category });
           }}
           value={productInfo.category}
-          label="Select Category"
+          label="Selectionner la categorie"
         >
           {categories.map((c) => (
             <Option value={c} key={c}>
@@ -212,11 +220,11 @@ export default function ProductForm(props: Props) {
 
         <div className="flex space-x-4">
           <div className="space-y-4 flex-1">
-            <h3>Price</h3>
+            <h3>Prix</h3>
 
             <Input
               value={productInfo.mrp}
-              label="MRP"
+              label="EUR"
               onChange={({ target }) => {
                 const mrp = +target.value;
                 setProductInfo({ ...productInfo, mrp });
@@ -226,7 +234,7 @@ export default function ProductForm(props: Props) {
             />
             <Input
               value={productInfo.salePrice}
-              label="Sale Price"
+              label="Prix soldé"
               onChange={({ target }) => {
                 const salePrice = +target.value;
                 setProductInfo({ ...productInfo, salePrice });
@@ -241,7 +249,7 @@ export default function ProductForm(props: Props) {
 
             <Input
               value={productInfo.quantity}
-              label="Qty"
+              label="Qté"
               onChange={({ target }) => {
                 const quantity = +target.value;
                 if (!isNaN(quantity))
@@ -254,13 +262,13 @@ export default function ProductForm(props: Props) {
         </div>
 
         <div className="space-y-4">
-          <h3>Bullet points</h3>
+          <h3>Mots clés</h3>
           {fields.map((field, index) => (
             <div key={index} className="flex items-center">
               <Input
                 type="text"
                 value={field}
-                label={`Bullet point ${index + 1}`}
+                label={`Mot cléf ${index + 1}`}
                 onChange={({ target }) =>
                   updateBulletPointValue(target.value, index)
                 }
@@ -286,7 +294,7 @@ export default function ProductForm(props: Props) {
             className="flex items-center space-x-1 text-gray-800 ml-auto"
           >
             <PlusIcon className="w-4 h-4" />
-            <span>Add more</span>
+            <span>Ajouter plus</span>
           </button>
         </div>
 

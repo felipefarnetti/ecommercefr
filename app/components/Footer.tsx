@@ -11,23 +11,19 @@ export default function Footer() {
   return (
     <div className="bg-gradient-to-r from-blue-300 to-pink-100 text-black p-4 mt-5 rounded-lg">
       <div className="container mx-auto text-center">
-        <p className="text-sm" style={{ marginBottom: 7 }}>
-          <Link className="text-lg" href="/contact">
-            Contact us
-          </Link>
-        </p>
+        <p className="text-sm" style={{ marginBottom: 7 }}></p>
         <p className="text-sm" style={{ marginBottom: 5, marginTop: 5 }}>
-          <Link className="text-sm mr-4 md:text-lg" href="/refund-policy">
-            15-Day Refund Policy
+          <Link className="text-sm md:text-lg mr-2" href="/contact">
+            Nous contacter
           </Link>
           |
-          <Link className="text-sm ml-4 md:text-lg" href="/selling-conditions">
-            Selling Conditions
+          <Link className="text-sm md:text-lg ml-2" href="/selling-conditions">
+            Conditions de vente
           </Link>
         </p>
-        <p className="text-sm" style={{ marginBottom: 5 }}>
+        <p className="text-sm mb-2">
           <span className="flex items-center justify-center mb-2">
-            Accepted credit cards :
+            Cartes de crédit acceptées :
             <FontAwesomeIcon
               className="h-10 md:h-12 w-auto ml-4 text-green-700"
               icon={faCcVisa}
@@ -42,7 +38,7 @@ export default function Footer() {
             />
           </span>
         </p>
-        <p> Shipping within 48 hours</p>
+        <p>Expédition sous 48 heures</p>
       </div>
     </div>
   );

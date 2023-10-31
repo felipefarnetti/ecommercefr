@@ -63,7 +63,7 @@ export default function Contact() {
     <main className="flex h-auto flex-col items-center bg-blue-gray-100 rounded-lg">
       <form
         onSubmit={handleSubmit}
-        className="mt-10 mb-2 w-96 max-w-screen-lg sm:w-96 bg-gradient-to-r from-blue-100 to-pink-100 border border-gray-400 p-4 rounded-lg"
+        className="mt-10 mb-2 w-80 max-w-screen-lg md:w-96 bg-gradient-to-r from-blue-100 to-pink-100 border border-gray-400 p-4 rounded-lg"
       >
         <h2 className="text-center text-lg font-semibold underline underline-offset-8 mb-4">
           Formulaire de contact
@@ -114,13 +114,13 @@ export default function Contact() {
         </div>
         <div className="flex justify-between">
           <button
-            className="rounded-lg bg-sky-400 w-20 h-10 border-black border shadow-md"
+            className="rounded-lg bg-sky-400 w-20 h-8 md:h-10 border-black border shadow-md"
             type="submit"
           >
             Envoyer
           </button>
           <button
-            className="rounded-lg bg-sky-400 w-20 h-10 border-black border shadow-md"
+            className="rounded-lg bg-sky-400 w-20 h-8 md:h-10 border-black border shadow-md"
             type="button"
             onClick={clearForm}
           >
@@ -129,7 +129,7 @@ export default function Contact() {
         </div>
       </form>
 
-      <div className="relative flex place-items-center mt-4 mb-10 w-20 h-10 justify-center bg-yellow-600 text-black border-black border rounded-lg shadow-md">
+      <div className="relative flex place-items-center mt-4 mb-10 w-20 h-8 md:h-10 justify-center bg-yellow-600 text-black border-black border rounded-lg shadow-md">
         <Link href="/">Accueil</Link>
       </div>
     </main>

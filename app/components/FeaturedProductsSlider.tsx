@@ -21,6 +21,7 @@ interface Props {
   products: FeaturedProduct[];
 }
 
+// Configuration des paramètres pour le Slider
 const settings: Settings = {
   dots: true,
   lazyLoad: "anticipated",
@@ -35,7 +36,7 @@ const settings: Settings = {
 export default function FeaturedProductsSlider({ products }: Props) {
   const router = useRouter();
 
-  if (!products.length) return null;
+  if (!products.length) return null; // Si aucun produit en vedette, ne rien afficher
 
   return (
     <div className="lg:h-[380px] md:h[300px] h-[250px]">

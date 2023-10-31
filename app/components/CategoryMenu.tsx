@@ -10,7 +10,9 @@ export default function CategoryMenu() {
   return (
     <HorizontalMenu>
       {categories.map((c) => (
+        // Utilisation de la fonction de mapping pour afficher chaque catégorie
         <Link key={c} href={`/browse-products/${c}`}>
+          {/* Création d'un lien vers la page de catégorie */}
           <Chip
             color="teal"
             className="mr-2"

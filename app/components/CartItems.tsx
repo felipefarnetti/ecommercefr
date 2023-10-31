@@ -31,12 +31,13 @@ const CartItems: React.FC<CartItemsProps> = ({
   cartTotal,
   cartId,
 }) => {
-  const [busy, setBusy] = useState(false);
-  const router = useRouter();
+  const [busy, setBusy] = useState(false); // État pour indiquer si l'interface est occupée
+  const router = useRouter(); // Utilisation de l'utilitaire de navigation de Next.js
 
   const handleCheckout = async () => {
-    setBusy(true);
+    setBusy(true); // Marque l'interface comme occupée
     const res = await fetch("/api/checkout", {
+      // Appel à l'API de paiement
       method: "POST",
       body: JSON.stringify({ cartId }),
     });
@@ -44,25 +45,26 @@ const CartItems: React.FC<CartItemsProps> = ({
     const { error, url } = await res.json();
 
     if (!res.ok) {
-      toast.error(error);
+      toast.error(error); // Affiche une notification d'erreur
     } else {
-      // open the checkout url
+      // Ouvre l'URL de paiement
       window.location.href = url;
     }
-    setBusy(false);
+    setBusy(false); // Marque l'interface comme disponible
   };
 
   const updateCart = async (productId: string, quantity: number) => {
-    setBusy(true);
+    setBusy(true); // Marque l'interface comme occupée
     await fetch("/api/product/cart", {
+      // Appel à l'API pour mettre à jour le panier
       method: "POST",
       body: JSON.stringify({
         productId,
         quantity,
       }),
     });
-    router.refresh();
-    setBusy(false);
+    router.refresh(); // Actualise la page
+    setBusy(false); // Marque l'interface comme disponible
   };
 
   return (
@@ -122,7 +124,7 @@ const CartItems: React.FC<CartItemsProps> = ({
           disabled={busy}
           onClick={handleCheckout}
         >
-          Checkout
+          Payer
         </Button>
       </div>
     </div>

@@ -25,6 +25,7 @@ export default function FeaturedProductTable({ products }: Props) {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
+  // Fonction pour supprimer un produit en vedette par son ID
   const handleDelete = async (id: string) => {
     await deleteFeaturedProduct(id);
     router.refresh();
@@ -80,7 +81,7 @@ export default function FeaturedProductTable({ products }: Props) {
                         color="blue-gray"
                         className="font-bold hover:underline"
                       >
-                        View Product
+                        Voir le produit
                       </Typography>
                     </Link>
                   </td>
@@ -90,7 +91,7 @@ export default function FeaturedProductTable({ products }: Props) {
                         className="font-semibold uppercase text-xs text-blue-400 hover:underline"
                         href={`/products/featured/update?id=${id}`}
                       >
-                        Edit
+                        Modifier
                       </Link>
                       <Button
                         disabled={isPending}
@@ -103,7 +104,7 @@ export default function FeaturedProductTable({ products }: Props) {
                         ripple={false}
                         variant="text"
                       >
-                        {isPending ? "Deleting" : "Delete"}
+                        {isPending ? "En train de supprimer" : "Suprimmer"}
                       </Button>
                     </div>
                   </td>

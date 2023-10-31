@@ -4,6 +4,8 @@ import { Avatar, Option, Select } from "@material-tailwind/react";
 import Image from "next/image";
 import React, { useTransition } from "react";
 import { formatPrice } from "@utils/helper";
+import { format } from "date-fns";
+import { fr } from "date-fns/locale"; // Import the French locale
 
 type product = {
   id: string;
@@ -26,6 +28,7 @@ export interface Order {
   subTotal: number;
   products: product[];
   deliveryStatus: string;
+  createdAt: Date;
 }
 
 interface Props {
@@ -42,7 +45,7 @@ type address = {
   state: string;
 };
 
-const ORDER_STATUS = ["delivered", "ordered", "shipped"];
+const ORDER_STATUS = ["livré", "commandé", "expédié"];
 
 const formatAddress = ({
   line1,
@@ -54,19 +57,19 @@ const formatAddress = ({
   return (
     <div>
       <p className="font-semibold">
-        Line 1: <span className="font-normal">{line1}</span>
+        Adresse: <span className="font-normal">{line1}</span>
       </p>
       {line2 ? (
         <p className="font-semibold">
-          Line 2: <span className="font-normal">{line2}</span>
+          Adresse1: <span className="font-normal">{line2}</span>
         </p>
       ) : null}
       <div className="flex items-center space-x-2">
         <p className="font-semibold">
-          City: <span className="font-normal">{city}</span>
+          Ville: <span className="font-normal">{city}</span>
         </p>
         <p className="font-semibold">
-          Zipcode: <span className="font-normal">{postal_code}</span>
+          Code Postale: <span className="font-normal">{postal_code}</span>
         </p>
         <p className="font-semibold">{country}</p>
       </div>
@@ -76,6 +79,11 @@ const formatAddress = ({
 
 export default function OrderCard({ order, disableUpdate = true }: Props) {
   const [isPending, startTransition] = useTransition();
+  // Analyse la chaîne de date createdAt en un objet Date
+  const createdAtDate = new Date(order.createdAt);
+  // Formate la date analysée dans le format souhaité (format français)
+  const formattedDate = format(createdAtDate, "d MMMM yyyy", { locale: fr });
+
   return (
     <div className="space-y-4 rounded border-blue-gray-800 border border-dashed p-2">
       <div className="flex justify-between">
@@ -84,11 +92,12 @@ export default function OrderCard({ order, disableUpdate = true }: Props) {
           <div>
             <p className="font-semibold">{order.customer.name}</p>
             <p className="text-sm">{order.customer.email}</p>
+            <p className="font-semibold">Date: {formattedDate}</p>
           </div>
         </div>
 
         <div>
-          <p className="font-semibold">Sub-Total</p>
+          <p className="font-semibold">Montant total:</p>
           <p className="text-sm font-semibold">
             EUR {formatPrice(order.subTotal)}
           </p>
@@ -97,7 +106,7 @@ export default function OrderCard({ order, disableUpdate = true }: Props) {
 
       <div className="flex items-center justify-between">
         <div>
-          <p className="font-semibold">Address</p>
+          <p className="font-semibold">Adresse</p>
           <div className="text-sm">
             {formatAddress(order.customer.address as any)}
           </div>
@@ -129,7 +138,7 @@ export default function OrderCard({ order, disableUpdate = true }: Props) {
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-100">
           <tr>
-            <th className="py-2 px-4 text-left">Product</th>
+            <th className="py-2 px-4 text-left">Produit/s</th>
             <th className="py-2 px-4 text-left">Total</th>
           </tr>
         </thead>
@@ -154,9 +163,9 @@ export default function OrderCard({ order, disableUpdate = true }: Props) {
                   <div>
                     <p className="font-semibold">{product.title}</p>
                     <p className="text-sm">
-                      Price: {formatPrice(product.price)}
+                      Prix: {formatPrice(product.price)}
                     </p>
-                    <p className="text-sm">Qty: {product.qty}</p>
+                    <p className="text-sm">Qté: {product.qty}</p>
                   </div>
                 </div>
               </td>

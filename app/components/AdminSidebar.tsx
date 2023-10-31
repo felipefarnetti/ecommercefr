@@ -53,25 +53,25 @@ const AdminSidebar = ({ children }: Props) => {
               <SparklesIcon className="w-4 h-4" />
               <span>Publicité</span>
             </Link>
-            <hr className="w-full " />
+            <hr className="w-full" />
           </li>
           <li>
             <Link className="flex items-center space-x-1" href="/sales">
               <CurrencyDollarIcon className="w-4 h-4" />
               <span>Ventes</span>
             </Link>
-            <hr className="w-full " />
+            <hr className="w-full" />
           </li>
           <li>
             <Link className="flex items-center space-x-1" href="/orders">
               <ShoppingBagIcon className="h-4 w-4" />
               <span>Commandes</span>
             </Link>
-            <hr className="w-full mb-10 " />
+            <hr className="w-full mb-10" />
           </li>
           <li>
             <SignOutButton>
-              <div className="cursor-pointer text-black mb-2">Logout</div>
+              <div className="cursor-pointer text-white mb-2 ml-1">Logout</div>
             </SignOutButton>
           </li>
           <li>
