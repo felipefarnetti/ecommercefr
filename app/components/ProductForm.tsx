@@ -128,7 +128,9 @@ export default function ProductForm(props: Props) {
       setProductImagesSource(initialValue.images);
       setIsForUpdate(true);
     }
-  }, []);
+    // A VERIFIER SI PROBLEME
+  }, [initialValue]);
+  // A VERIFIER SI PROBLEME
 
   // Gestionnaire de changement d'images
   const onImagesChange: ChangeEventHandler<HTMLInputElement> = ({ target }) => {
