@@ -12,33 +12,40 @@ interface Props {
     price: number;
   }[];
 }
+
 export default function SimilarProductsList({ products }: Props) {
+  if (!products.length) return null;
+
   return (
-    <div className="py-6">
-      <h1 className="text-xl font-bold mb-4 text-slate-900">
+    <section>
+      <h2 className="text-xl font-bold text-slate-900 mb-4">
         Ça pourrait vous plaire
-      </h1>
+      </h2>
       <HorizontalMenu>
-        {products.map((product) => {
-          return (
-            <Link href={`/${product.title}/${product.id}`} key={product.id}>
-              <div className="w-[150px] space-y-2 mr-2 rounded-xl border border-slate-100 hover:shadow-md transition p-2">
+        {products.map((product) => (
+          <Link href={`/${product.title}/${product.id}`} key={product.id}>
+            <div className="w-[140px] md:w-[160px] mr-2 rounded-xl border border-slate-100 bg-white hover:shadow-md transition-shadow overflow-hidden">
+              <div className="relative aspect-square">
                 <Image
-                  width={150}
-                  height={150}
+                  fill
+                  sizes="160px"
                   src={product.thumbnail}
                   alt={product.title}
-                  className="rounded h-24 w-24"
+                  className="object-cover"
                 />
-                <div>
-                  <h2 className="text-sm line-clamp-3">{product.title}</h2>
-                  <h2>{formatPrice(product.price)}</h2>
-                </div>
               </div>
-            </Link>
-          );
-        })}
+              <div className="p-2.5">
+                <h3 className="text-xs font-medium text-slate-700 line-clamp-2 leading-snug">
+                  {product.title}
+                </h3>
+                <p className="text-sm font-bold text-slate-900 mt-1">
+                  {formatPrice(product.price)}
+                </p>
+              </div>
+            </div>
+          </Link>
+        ))}
       </HorizontalMenu>
-    </div>
+    </section>
   );
 }

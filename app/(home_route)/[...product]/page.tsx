@@ -1,4 +1,3 @@
-// Importer les dépendances nécessaires
 import ProductView from "@components/ProductView";
 import ProductModel from "@models/productModel";
 import startDb from "@lib/db";
@@ -13,14 +12,12 @@ import { updateOrCreateHistory } from "@models/historyModel";
 import { auth } from "@/auth";
 import WishlistModel from "@models/wishlistModel";
 
-// Interface définissant les propriétés attendues
 interface Props {
   params: Promise<{
     product: string[];
   }>;
 }
 
-// Fonction asynchrone pour récupérer les informations du produit
 const fetchProduct = async (productId: string) => {
   if (!isValidObjectId(productId)) return redirect("/404");
 
@@ -55,7 +52,6 @@ const fetchProduct = async (productId: string) => {
   });
 };
 
-// Fonction asynchrone pour récupérer les avis sur le produit
 const fetchProductReviews = async (productId: string) => {
   await startDb();
 
@@ -81,7 +77,6 @@ const fetchProductReviews = async (productId: string) => {
   return JSON.stringify(result);
 };
 
-// Fonction asynchrone pour récupérer des produits similaires
 const fetchSimilarProducts = async () => {
   await startDb();
   const products = await ProductModel.find().sort({ rating: -1 }).limit(10);
@@ -95,7 +90,6 @@ const fetchSimilarProducts = async () => {
   });
 };
 
-// Page principale du produit
 export default async function Product({ params }: Props) {
   const { product } = await params;
   const productId = product[1];
@@ -106,10 +100,12 @@ export default async function Product({ params }: Props) {
   }
 
   const reviews = await fetchProductReviews(productId);
+  const parsedReviews = JSON.parse(reviews);
   const similarProducts = await fetchSimilarProducts();
 
   return (
-    <div className="p-4">
+    <div className="space-y-10">
+      {/* Product info */}
       <ProductView
         title={productInfo.title}
         description={productInfo.description}
@@ -122,15 +118,37 @@ export default async function Product({ params }: Props) {
         isWishlist={productInfo.isWishlist}
       />
 
+      {/* Similar products */}
       <SimilarProductsList products={similarProducts} />
 
-      <div className="py-4 space-y-4">
+      {/* Reviews */}
+      <section className="space-y-4">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-semibold mb-2">Avis</h1>
-          <Link href={`/add-review/${productInfo.id}`}>Ajouter un avis</Link>
+          <div>
+            <h2 className="text-xl font-bold text-slate-900">Avis clients</h2>
+            {parsedReviews.length > 0 && (
+              <p className="text-sm text-slate-500">
+                {parsedReviews.length} avis
+              </p>
+            )}
+          </div>
+          <Link
+            href={`/add-review/${productInfo.id}`}
+            className="text-sm font-semibold text-amber-600 hover:text-amber-700 transition-colors"
+          >
+            Donner mon avis
+          </Link>
         </div>
-        <ReviewsList reviews={JSON.parse(reviews)} />
-      </div>
+        {parsedReviews.length > 0 ? (
+          <ReviewsList reviews={parsedReviews} />
+        ) : (
+          <div className="bg-white rounded-xl border border-slate-100 p-8 text-center">
+            <p className="text-slate-400">
+              Aucun avis pour le moment. Soyez le premier !
+            </p>
+          </div>
+        )}
+      </section>
     </div>
   );
 }

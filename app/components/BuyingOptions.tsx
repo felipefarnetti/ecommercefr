@@ -90,41 +90,43 @@ export default function BuyingOptions({ wishlist, productTitle, productThumbnail
   };
 
   return (
-    <div className="flex items-center gap-3">
-      <CartCountUpdater
-        onDecrement={handleDecrement}
-        onIncrement={handleIncrement}
-        value={quantity}
-      />
-
-      <button
-        onClick={() => {
-          startTransition(async () => await addToCart());
-        }}
-        disabled={isPending}
-        className="border border-slate-300 text-slate-800 hover:bg-slate-50 font-semibold rounded-lg px-5 py-2.5 text-sm uppercase disabled:opacity-50 transition-colors"
-      >
-        Ajouter au panier
-      </button>
-      <button
-        disabled={isPending}
-        onClick={() => {
-          startTransition(async () => await handleCheckout());
-        }}
-        className="bg-amber-500 text-white hover:bg-amber-600 font-semibold rounded-lg px-5 py-2.5 text-sm uppercase disabled:opacity-50 transition-colors"
-      >
-        Acheter maintenant
-      </button>
-
-      <button
-        onClick={() => {
-          startTransition(async () => await updateWishlist());
-        }}
-        disabled={isPending}
-        className="p-2.5 hover:bg-slate-50 rounded-lg disabled:opacity-50 transition-colors"
-      >
-        <Wishlist isActive={wishlist} />
-      </button>
+    <div className="space-y-3">
+      <div className="flex items-center gap-3">
+        <CartCountUpdater
+          onDecrement={handleDecrement}
+          onIncrement={handleIncrement}
+          value={quantity}
+        />
+        <button
+          onClick={() => {
+            startTransition(async () => await updateWishlist());
+          }}
+          disabled={isPending}
+          className="p-2.5 hover:bg-slate-50 rounded-lg disabled:opacity-50 transition-colors"
+        >
+          <Wishlist isActive={wishlist} />
+        </button>
+      </div>
+      <div className="flex flex-col sm:flex-row gap-2">
+        <button
+          onClick={() => {
+            startTransition(async () => await addToCart());
+          }}
+          disabled={isPending}
+          className="flex-1 border border-slate-300 text-slate-800 hover:bg-slate-50 font-semibold rounded-lg px-5 py-3 text-sm uppercase disabled:opacity-50 transition-colors"
+        >
+          Ajouter au panier
+        </button>
+        <button
+          disabled={isPending}
+          onClick={() => {
+            startTransition(async () => await handleCheckout());
+          }}
+          className="flex-1 bg-amber-500 text-white hover:bg-amber-600 font-semibold rounded-lg px-5 py-3 text-sm uppercase disabled:opacity-50 transition-colors"
+        >
+          Acheter maintenant
+        </button>
+      </div>
     </div>
   );
 }

@@ -56,22 +56,33 @@ export default async function Home() {
   ]);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <FeaturedProductsSlider products={featuredProducts} />
-      <CategoryMenu />
-      <div>
-        <h2 className="text-2xl font-bold text-slate-900 mb-2 px-4">
-          Nos produits
+
+      {/* Categories */}
+      <section>
+        <h2 className="text-lg font-bold text-slate-900 mb-3 px-4">
+          Catégories
         </h2>
-        <p className="text-slate-500 text-sm mb-4 px-4">
-          Découvrez notre sélection
-        </p>
+        <CategoryMenu />
+      </section>
+
+      {/* Products */}
+      <section>
+        <div className="px-4 mb-4">
+          <h2 className="text-2xl font-bold text-slate-900">
+            Nos produits
+          </h2>
+          <p className="text-slate-500 text-sm mt-1">
+            Découvrez notre sélection
+          </p>
+        </div>
         <GridView>
           {latestProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </GridView>
-      </div>
+      </section>
     </div>
   );
 }

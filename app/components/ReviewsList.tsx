@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-// import dateFormat from "dateformat";
 import ReviewStars from "@components/ReviewStars";
 
 interface Review {
@@ -21,36 +20,43 @@ interface Props {
 
 export default function ReviewsList({ reviews }: Props) {
   return (
-    <div className="space-y-4">
-      {reviews?.map((review) => {
-        return (
-          <div className="bg-white border border-slate-100 rounded-xl p-4 space-y-2" key={review.id}>
-            <div className="flex items-center space-x-2">
-              <Image
-                width={40}
-                height={40}
-                className="rounded-full object-fill"
-                src={review.userInfo.avatar || "/avatar.png"}
-                alt={review.userInfo.name}
-              />
-              <div>
-                <p className="font-semibold">{review.userInfo.name}</p>
-                <p className="text-xs">
+    <div className="space-y-3">
+      {reviews?.map((review) => (
+        <div
+          className="bg-white border border-slate-100 rounded-xl p-4 space-y-2.5"
+          key={review.id}
+        >
+          <div className="flex items-center gap-3">
+            <Image
+              width={36}
+              height={36}
+              className="rounded-full object-cover"
+              src={review.userInfo.avatar || "/avatar.png"}
+              alt={review.userInfo.name}
+            />
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center justify-between">
+                <p className="font-semibold text-sm text-slate-800">
+                  {review.userInfo.name}
+                </p>
+                <p className="text-xs text-slate-400">
                   {new Date(review.date).toLocaleDateString("fr-FR", {
                     day: "numeric",
-                    month: "long",
+                    month: "short",
                     year: "numeric",
                   })}
                 </p>
               </div>
-            </div>
-            <div className="">
               <ReviewStars rating={review.rating} />
-              <p>{review.comment}</p>
             </div>
           </div>
-        );
-      })}
+          {review.comment && (
+            <p className="text-sm text-slate-600 leading-relaxed">
+              {review.comment}
+            </p>
+          )}
+        </div>
+      ))}
     </div>
   );
 }
