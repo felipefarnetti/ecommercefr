@@ -21,7 +21,7 @@ export default function SimilarProductsList({ products }: Props) {
       <h2 className="text-xl font-bold text-slate-900 mb-4">
         Ça pourrait vous plaire
       </h2>
-      <HorizontalMenu>
+      <HorizontalMenu autoScroll hideArrowsMobile>
         {products.map((product) => (
           <Link href={`/${product.title}/${product.id}`} key={product.id}>
             <div className="w-[112px] md:w-[128px] mr-2 rounded-xl border border-slate-100 bg-white hover:shadow-md transition-shadow overflow-hidden">
