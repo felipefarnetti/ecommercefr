@@ -50,7 +50,7 @@ export default function NavUI({ cartItemsCount, avatar }: Props) {
   return (
     <>
       <nav className="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-slate-200">
-        <div className="mx-auto max-w-screen-xl px-4 py-4 md:py-3 flex items-center justify-between">
+        <div className="mx-auto max-w-screen-xl px-4 py-5 md:py-3 flex items-center justify-between">
           <Link
             href="/"
             className="text-xl font-bold tracking-tight text-slate-900 hover:text-amber-600 transition-colors"
