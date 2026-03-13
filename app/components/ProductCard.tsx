@@ -90,8 +90,8 @@ export default function ProductCard({ product }: Props) {
           <h3 className="font-semibold text-slate-800 text-xs md:text-sm line-clamp-1">
             {truncate(product.title, 50)}
           </h3>
-          <p className="text-slate-500 text-[10px] md:text-xs line-clamp-1 mt-0.5 mb-1.5">
-            {truncate(product.description, 50)}
+          <p className="text-slate-500 text-[10px] md:text-xs line-clamp-2 mt-0.5 mb-1.5">
+            {truncate(product.description, 100)}
           </p>
           <div className="flex items-center justify-between gap-1">
             <div className="flex items-baseline gap-1.5">
