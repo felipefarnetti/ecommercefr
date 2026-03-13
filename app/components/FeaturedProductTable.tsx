@@ -33,15 +33,15 @@ export default function FeaturedProductTable({ products }: Props) {
   return (
     <div className="py-5">
       <div className="px-0">
-        <table className="w-full min-w-max table-auto text-left">
+        <table className="w-full min-w-max table-auto text-left bg-white rounded-xl overflow-hidden">
           <thead>
             <tr>
               {TABLE_HEAD.map((head, index) => (
                 <th
                   key={index}
-                  className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
+                  className="border-y border-slate-100 bg-slate-100 p-4"
                 >
-                  <span className="text-sm text-blue-gray-600 font-normal leading-none opacity-70">
+                  <span className="text-sm text-slate-600 font-normal leading-none opacity-70">
                     {head}
                   </span>
                 </th>
@@ -54,20 +54,20 @@ export default function FeaturedProductTable({ products }: Props) {
               const isLast = index === products.length - 1;
               const classes = isLast
                 ? "p-4"
-                : "p-4 border-b border-blue-gray-50";
+                : "p-4 border-b border-slate-50";
 
               return (
                 <tr key={id}>
                   <td className={classes}>
                     <div className="flex items-center gap-3">
-                      <span className="text-sm text-blue-gray-800 font-bold">
+                      <span className="text-sm text-slate-800 font-bold">
                         {truncate(title, 100)}
                       </span>
                     </div>
                   </td>
                   <td className={classes}>
                     <Link href={link}>
-                      <span className="text-sm text-blue-gray-800 font-bold hover:underline">
+                      <span className="text-sm text-slate-800 font-bold hover:underline">
                         Voir le produit
                       </span>
                     </Link>
@@ -75,7 +75,7 @@ export default function FeaturedProductTable({ products }: Props) {
                   <td className={classes}>
                     <div className="flex items-center">
                       <Link
-                        className="font-semibold uppercase text-xs text-blue-400 hover:underline"
+                        className="font-semibold uppercase text-xs text-slate-600 hover:underline"
                         href={`/products/featured/update?id=${id}`}
                       >
                         Modifier

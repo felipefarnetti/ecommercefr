@@ -77,7 +77,7 @@ export default function ReviewForm({ productId, initialValue }: Props) {
         <h3 className="font-semibold text-lg mb-1">Laisser une évaluation</h3>
         <textarea
           placeholder="Écrivez ce que vous aimez ou pas au sujet du produit."
-          className="w-full resize-none border p-2 rounded border-blue-gray-500 outline-blue-400 transition"
+          className="w-full resize-none bg-slate-50 border border-slate-200 rounded-lg p-3 outline-none focus:border-slate-400 transition"
           rows={4}
           value={review.comment}
           onChange={({ target }) =>
@@ -89,13 +89,13 @@ export default function ReviewForm({ productId, initialValue }: Props) {
         <button
           disabled={isPending}
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium uppercase hover:bg-blue-600 disabled:opacity-50"
+          className="bg-slate-900 text-white px-4 py-2 rounded-lg text-sm font-medium uppercase hover:bg-slate-800 transition-colors disabled:opacity-50"
         >
           Envoyer
         </button>
         <button
           type="button"
-          className="ml-2 bg-yellow-600 text-black px-4 py-2 rounded-lg text-sm font-medium uppercase hover:bg-yellow-700"
+          className="ml-2 bg-slate-100 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium uppercase hover:bg-slate-200 transition-colors"
           onClick={goBack}
         >
           Retour

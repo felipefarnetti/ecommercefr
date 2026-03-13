@@ -22,24 +22,24 @@ const CartCountUpdater = ({
   return (
     <div
       style={{ opacity: disabled ? "0.5" : "1" }}
-      className="flex items-center space-x-2"
+      className="flex items-center border border-slate-200 rounded-lg"
     >
       <button
         disabled={disabled}
         onClick={onDecrement}
-        className="p-1 rounded-lg text-blue-gray-900 hover:bg-blue-gray-50 disabled:opacity-50"
+        className="p-2 rounded-l-lg text-slate-700 hover:bg-slate-50 disabled:opacity-50 transition-colors"
       >
-        <MinusSmallIcon className="w-4 h-4" /> {/* Icône de réduction */}
+        <MinusSmallIcon className="w-4 h-4" />
       </button>
 
-      <span className="text-lg font-medium">{value}</span>
-      {/* Affichage de la valeur actuelle */}
+      <span className="text-sm font-semibold text-slate-900 px-3 min-w-[2rem] text-center">{value}</span>
+
       <button
         disabled={disabled}
         onClick={onIncrement}
-        className="p-1 rounded-lg text-blue-gray-900 hover:bg-blue-gray-50 disabled:opacity-50"
+        className="p-2 rounded-r-lg text-slate-700 hover:bg-slate-50 disabled:opacity-50 transition-colors"
       >
-        <PlusSmallIcon className="w-4 h-4" /> {/* Icône d'augmentation */}
+        <PlusSmallIcon className="w-4 h-4" />
       </button>
     </div>
   );

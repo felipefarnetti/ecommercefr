@@ -60,67 +60,73 @@ export default function Contact() {
   }
 
   return (
-    <main className="flex h-auto flex-col items-center bg-blue-gray-100 rounded-lg">
+    <main className="flex h-auto flex-col items-center py-10">
       <form
         onSubmit={handleSubmit}
-        className="mt-10 mb-2 w-80 max-w-screen-lg md:w-96 bg-gradient-to-r from-blue-100 to-pink-100 border border-gray-400 p-4 rounded-lg"
+        className="mt-10 mb-2 w-80 max-w-screen-lg md:w-96 bg-white rounded-2xl shadow-sm border border-slate-100 p-6"
       >
-        <h2 className="text-center text-lg font-semibold underline underline-offset-8 mb-4">
+        <h2 className="text-center text-lg font-semibold text-slate-900 mb-6">
           Formulaire de contact
         </h2>
 
-        <div className="mb-4 flex flex-col w-500">
-          <label htmlFor="form-name">Nom :</label>
-          <input
-            id="form-name"
-            autoComplete="name"
-            maxLength={50}
-            size={50}
-            name="name"
-            value={formData.name}
-            onChange={(event) =>
-              setFormData({ ...formData, name: event.target.value })
-            }
-            className="text-black bg-gray-300 rounded-lg p-2 shadow-sm"
-          />
+        <div className="mb-6 flex flex-col gap-4">
+          <div>
+            <label htmlFor="form-name" className="block text-sm font-medium text-slate-700 mb-1">Nom :</label>
+            <input
+              id="form-name"
+              autoComplete="name"
+              maxLength={50}
+              size={50}
+              name="name"
+              value={formData.name}
+              onChange={(event) =>
+                setFormData({ ...formData, name: event.target.value })
+              }
+              className="w-full text-slate-900 bg-slate-50 border border-slate-200 rounded-lg p-2.5 outline-none focus:border-slate-400 transition"
+            />
+          </div>
 
-          <label htmlFor="form-email"> Email :</label>
-          <input
-            id="form-email"
-            required
-            autoComplete="email"
-            maxLength={80}
-            name="email"
-            type="email"
-            value={formData.email}
-            onChange={(event) =>
-              setFormData({ ...formData, email: event.target.value })
-            }
-            className="text-black bg-gray-300 rounded-lg p-2 shadow-sm"
-          />
+          <div>
+            <label htmlFor="form-email" className="block text-sm font-medium text-slate-700 mb-1">Email :</label>
+            <input
+              id="form-email"
+              required
+              autoComplete="email"
+              maxLength={80}
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={(event) =>
+                setFormData({ ...formData, email: event.target.value })
+              }
+              className="w-full text-slate-900 bg-slate-50 border border-slate-200 rounded-lg p-2.5 outline-none focus:border-slate-400 transition"
+            />
+          </div>
 
-          <label htmlFor="form-message"> Message : </label>
-          <textarea
-            id="form-message"
-            required
-            name="message"
-            rows={5}
-            value={formData.message}
-            onChange={(event) =>
-              setFormData({ ...formData, message: event.target.value })
-            }
-            className="text-black bg-gray-300 rounded-lg p-2 shadow-sm"
-          />
+          <div>
+            <label htmlFor="form-message" className="block text-sm font-medium text-slate-700 mb-1">Message :</label>
+            <textarea
+              id="form-message"
+              required
+              name="message"
+              rows={5}
+              value={formData.message}
+              onChange={(event) =>
+                setFormData({ ...formData, message: event.target.value })
+              }
+              className="w-full text-slate-900 bg-slate-50 border border-slate-200 rounded-lg p-2.5 outline-none focus:border-slate-400 transition resize-none"
+            />
+          </div>
         </div>
-        <div className="flex justify-between">
+        <div className="flex justify-between gap-3">
           <button
-            className="rounded-lg bg-sky-400 w-20 h-8 md:h-10 border-black border shadow-md"
+            className="flex-1 rounded-lg bg-slate-900 text-white h-10 font-medium hover:bg-slate-800 transition-colors"
             type="submit"
           >
             Envoyer
           </button>
           <button
-            className="rounded-lg bg-sky-400 w-20 h-8 md:h-10 border-black border shadow-md"
+            className="flex-1 rounded-lg bg-slate-100 text-slate-700 h-10 font-medium hover:bg-slate-200 transition-colors"
             type="button"
             onClick={clearForm}
           >
@@ -129,8 +135,10 @@ export default function Contact() {
         </div>
       </form>
 
-      <div className="relative flex place-items-center mt-4 mb-10 w-20 h-8 md:h-10 justify-center bg-yellow-600 text-black border-black border rounded-lg shadow-md">
-        <Link href="/">Accueil</Link>
+      <div className="mt-4 mb-10">
+        <Link href="/" className="inline-block px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
+          Accueil
+        </Link>
       </div>
     </main>
   );

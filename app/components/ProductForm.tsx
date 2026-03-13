@@ -188,23 +188,23 @@ export default function ProductForm(props: Props) {
               setProductInfo({ ...productInfo, title: target.value })
             }
             placeholder=" "
-            className="peer w-full border border-gray-300 rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-blue-500 transition"
+            className="peer w-full bg-slate-50 border border-slate-200 rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-slate-400 transition"
           />
-          <label className="absolute left-3 top-2 text-xs text-gray-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
+          <label className="absolute left-3 top-2 text-xs text-slate-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
             Titre
           </label>
         </div>
 
         <div className="relative w-full">
           <textarea
-            className="h-52 peer w-full border border-gray-300 rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-blue-500 transition"
+            className="h-52 peer w-full bg-slate-50 border border-slate-200 rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-slate-400 transition"
             value={productInfo.description}
             onChange={({ target }) =>
               setProductInfo({ ...productInfo, description: target.value })
             }
             placeholder=" "
           />
-          <label className="absolute left-3 top-2 text-xs text-gray-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
+          <label className="absolute left-3 top-2 text-xs text-slate-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
             Description
           </label>
         </div>
@@ -216,7 +216,7 @@ export default function ProductForm(props: Props) {
               if (category) setProductInfo({ ...productInfo, category });
             }}
             value={productInfo.category}
-            className="w-full border border-gray-300 rounded-lg px-3 py-3 text-sm outline-none focus:border-blue-500 transition bg-white"
+            className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-3 text-sm outline-none focus:border-slate-400 transition"
           >
             <option value="" disabled>
               Selectionner la categorie
@@ -241,9 +241,9 @@ export default function ProductForm(props: Props) {
                   setProductInfo({ ...productInfo, mrp });
                 }}
                 placeholder=" "
-                className="peer w-full border border-gray-300 rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-blue-500 transition mb-4"
+                className="peer w-full bg-slate-50 border border-slate-200 rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-slate-400 transition mb-4"
               />
-              <label className="absolute left-3 top-2 text-xs text-gray-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
+              <label className="absolute left-3 top-2 text-xs text-slate-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
                 EUR
               </label>
             </div>
@@ -255,9 +255,9 @@ export default function ProductForm(props: Props) {
                   setProductInfo({ ...productInfo, salePrice });
                 }}
                 placeholder=" "
-                className="peer w-full border border-gray-300 rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-blue-500 transition mb-4"
+                className="peer w-full bg-slate-50 border border-slate-200 rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-slate-400 transition mb-4"
               />
-              <label className="absolute left-3 top-2 text-xs text-gray-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
+              <label className="absolute left-3 top-2 text-xs text-slate-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
                 Prix soldé
               </label>
             </div>
@@ -275,9 +275,9 @@ export default function ProductForm(props: Props) {
                     setProductInfo({ ...productInfo, quantity });
                 }}
                 placeholder=" "
-                className="peer w-full border border-gray-300 rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-blue-500 transition mb-4"
+                className="peer w-full bg-slate-50 border border-slate-200 rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-slate-400 transition mb-4"
               />
-              <label className="absolute left-3 top-2 text-xs text-gray-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
+              <label className="absolute left-3 top-2 text-xs text-slate-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
                 Qté
               </label>
             </div>
@@ -296,9 +296,9 @@ export default function ProductForm(props: Props) {
                     updateBulletPointValue(target.value, index)
                   }
                   placeholder=" "
-                  className="peer w-full border border-gray-300 rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-blue-500 transition mb-4"
+                  className="peer w-full bg-slate-50 border border-slate-200 rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-slate-400 transition mb-4"
                 />
-                <label className="absolute left-3 top-2 text-xs text-gray-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
+                <label className="absolute left-3 top-2 text-xs text-slate-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
                   {`Mot cléf ${index + 1}`}
                 </label>
               </div>
@@ -318,7 +318,7 @@ export default function ProductForm(props: Props) {
             disabled={isPending}
             type="button"
             onClick={addMoreBulletPoints}
-            className="flex items-center space-x-1 text-gray-800 ml-auto"
+            className="flex items-center space-x-1 text-slate-800 ml-auto"
           >
             <PlusIcon className="w-4 h-4" />
             <span>Ajouter plus</span>
@@ -328,7 +328,7 @@ export default function ProductForm(props: Props) {
         <button
           disabled={isPending}
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium uppercase hover:bg-blue-600 disabled:opacity-50"
+          className="bg-slate-900 text-white px-4 py-2 rounded-lg text-sm font-medium uppercase hover:bg-slate-800 disabled:opacity-50"
         >
           {getBtnTitle()}
         </button>

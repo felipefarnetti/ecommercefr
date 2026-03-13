@@ -22,21 +22,13 @@ export default function SearchForm({ submitTo }: Props) {
       className="w-full"
     >
       <div className="relative w-full">
+        <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
         <input
           value={query || searchQuery}
           onChange={({ target }) => setQuery(target.value)}
-          placeholder=" "
-          className="peer w-full border border-gray-300 rounded-lg px-3 pt-5 pb-2 pr-10 text-sm outline-none focus:border-blue-500 transition"
+          placeholder="Rechercher un produit..."
+          className="w-full bg-slate-100 rounded-full pl-10 pr-4 py-2 text-sm text-slate-700 placeholder:text-slate-400 outline-none focus:bg-white focus:ring-2 focus:ring-slate-200 transition-all"
         />
-        <label className="absolute left-3 top-2 text-xs text-gray-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
-          Recherche
-        </label>
-        <button
-          type="submit"
-          className="absolute right-3 top-1/2 -translate-y-1/2"
-        >
-          <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
-        </button>
       </div>
     </form>
   );

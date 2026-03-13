@@ -8,12 +8,10 @@ import AuthSession from "@components/AuthSession";
 import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
-// export const revalidate = 0;
-// export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Ma Boutique",
-  description: "ma boutique",
+  description: "Votre boutique en ligne",
 };
 
 export default function RootLayout({
@@ -25,8 +23,7 @@ export default function RootLayout({
     <AuthSession>
       <html lang="fr">
         <body
-          className={`${inter.className} bg-green-50`}
-          // si on veut couleur de backgroud sinon on laisse juste les crochets inter ...
+          className={`${inter.className} bg-slate-50 text-slate-800`}
           suppressHydrationWarning={true}
         >
           {children}

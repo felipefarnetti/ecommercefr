@@ -83,7 +83,7 @@ export default function BuyingOptions({ wishlist }: Props) {
   };
 
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center gap-3">
       <CartCountUpdater
         onDecrement={handleDecrement}
         onIncrement={handleIncrement}
@@ -95,7 +95,7 @@ export default function BuyingOptions({ wishlist }: Props) {
           startTransition(async () => await addToCart());
         }}
         disabled={isPending}
-        className="px-4 py-2 text-blue-gray-900 hover:bg-blue-gray-50 rounded-lg text-sm font-medium uppercase disabled:opacity-50"
+        className="border border-slate-300 text-slate-800 hover:bg-slate-50 font-semibold rounded-lg px-5 py-2.5 text-sm uppercase disabled:opacity-50 transition-colors"
       >
         Ajouter au panier
       </button>
@@ -104,7 +104,7 @@ export default function BuyingOptions({ wishlist }: Props) {
         onClick={() => {
           startTransition(async () => await handleCheckout());
         }}
-        className="rounded-full w-full bg-amber-500 text-white px-4 py-2 text-sm font-medium uppercase hover:bg-amber-600 disabled:opacity-50"
+        className="bg-amber-500 text-white hover:bg-amber-600 font-semibold rounded-lg px-5 py-2.5 text-sm uppercase disabled:opacity-50 transition-colors"
       >
         Acheter maintenant
       </button>
@@ -114,7 +114,7 @@ export default function BuyingOptions({ wishlist }: Props) {
           startTransition(async () => await updateWishlist());
         }}
         disabled={isPending}
-        className="px-4 py-2 text-blue-gray-900 hover:bg-blue-gray-50 rounded-lg disabled:opacity-50"
+        className="p-2.5 hover:bg-slate-50 rounded-lg disabled:opacity-50 transition-colors"
       >
         <Wishlist isActive={wishlist} />
       </button>

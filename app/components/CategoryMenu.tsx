@@ -1,5 +1,4 @@
 "use client";
-// Importation des dépendances nécessaires
 import React from "react";
 import HorizontalMenu from "./HorizontalMenu";
 import categories from "@utils/categories";
@@ -9,16 +8,8 @@ export default function CategoryMenu() {
   return (
     <HorizontalMenu>
       {categories.map((c) => (
-        // Utilisation de la fonction de mapping pour afficher chaque catégorie
         <Link key={c} href={`/browse-products/${c}`}>
-          {/* Création d'un lien vers la page de catégorie */}
-          <span
-            className="inline-block mr-2 border border-teal-500 text-teal-500 rounded-full px-3 py-1"
-            style={{
-              fontSize: "11px",
-              fontWeight: "bold",
-            }}
-          >
+          <span className="inline-block whitespace-nowrap mr-2 border border-slate-300 text-slate-600 rounded-full px-4 py-1.5 text-xs font-semibold hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all">
             {c}
           </span>
         </Link>

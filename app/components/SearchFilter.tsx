@@ -39,7 +39,7 @@ export default function SearchFilter({ children }: Props) {
       }}
       className="md:flex py-4 space-y-4"
     >
-      <div className="md:border-r md:border-b-0 border-b border-gray-700 p-2 md:space-y-4 md:block flex space-x-8 md:space-x-0 sticky top-0 md:h-screen z-10 bg-white">
+      <div className="md:border-r md:border-b-0 border-b border-slate-200 p-4 md:space-y-4 md:block flex space-x-8 md:space-x-0 sticky top-0 md:h-screen z-10 bg-white">
         <div>
           <p className="font-semibold">Prix</p>
           <div>
@@ -50,7 +50,7 @@ export default function SearchFilter({ children }: Props) {
                   name="type"
                   defaultChecked={lowToHigh}
                   onChange={() => setPriceFilter("asc")}
-                  className="w-4 h-4 text-blue-gray-600 border-gray-300 focus:ring-blue-gray-500"
+                  className="w-4 h-4 accent-amber-500"
                 />
                 -   &gt;   +
               </label>
@@ -62,7 +62,7 @@ export default function SearchFilter({ children }: Props) {
                   name="type"
                   onChange={() => setPriceFilter("desc")}
                   defaultChecked={highToLow}
-                  className="w-4 h-4 text-blue-gray-600 border-gray-300 focus:ring-blue-gray-500"
+                  className="w-4 h-4 accent-amber-500"
                 />
                 +   &lt;   -
               </label>
@@ -102,7 +102,7 @@ export default function SearchFilter({ children }: Props) {
         <div>
           <button
             type="submit"
-            className="text-blue-gray-600 text-center w-full p-1 border rounded mt-6"
+            className="text-white bg-slate-900 text-center w-full p-2 rounded-lg mt-6 font-medium hover:bg-slate-800 transition-colors"
           >
             Appliquer filtre
           </button>
@@ -113,7 +113,7 @@ export default function SearchFilter({ children }: Props) {
               router.push("/search?query=" + query);
             }}
             type="button"
-            className="text-blue-gray-600 text-center w-full p-1 border rounded mt-6"
+            className="text-slate-600 text-center w-full p-2 border border-slate-200 rounded-lg mt-2 font-medium hover:bg-slate-50 transition-colors"
           >
             Supprimer filtre
           </button>

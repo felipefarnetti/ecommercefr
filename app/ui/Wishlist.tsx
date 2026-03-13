@@ -10,6 +10,6 @@ export default function Wishlist({ isActive }: Props) {
   return isActive ? (
     <HeartIconSolid className="w-6 h-6 text-red-500" />
   ) : (
-    <HeartIcon className="w-6 h-6" />
+    <HeartIcon className="w-6 h-6 text-slate-300" />
   );
 }

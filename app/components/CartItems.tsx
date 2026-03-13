@@ -68,63 +68,80 @@ const CartItems: React.FC<CartItemsProps> = ({
 
   return (
     <div>
-      <table className="min-w-full divide-y divide-gray-200">
-        <tbody className="bg-white divide-y divide-gray-300">
-          {products.map((product) => (
-            <tr key={product.id}>
-              <td className="pl-4 py-2 rounded-md h-16 w-16">
-                <Image
-                  src={product.thumbnail}
-                  alt={product.title}
-                  height={40}
-                  width={40}
-                />
-              </td>
-              <td className="py-4 text-xs md:text-xl lg:text-xl pl-2">
-                {product.title}
-              </td>
-              <td className="py-4 font-semibold text-md md:text-xl lg:text-xl">
-                {formatPrice(product.totalPrice)}
-              </td>
-              <td className="py-4">
-                <CartCountUpdater
-                  onDecrement={() => updateCart(product.id, -1)}
-                  onIncrement={() => updateCart(product.id, 1)}
-                  value={product.qty}
-                  disabled={busy}
-                />
-              </td>
-              <td className="py-4 text-right rounded-md">
-                <button
-                  onClick={() => updateCart(product.id, -product.qty)}
-                  disabled={busy}
-                  className="text-red-500"
-                  style={{ opacity: busy ? "0.5" : "1" }}
-                >
-                  <XMarkIcon className="w-5 h-5 mr-2" />
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      <div className="flex flex-col justify-end items-end space-y-4">
-        <div className="flex justify-end space-x-4 text-blue-gray-800 mt-4">
-          <p className="font-semibold text-2xl">Total</p>
-          <div>
-            <p className="font-semibold text-2xl">{formatPrice(cartTotal)}</p>
-            <p className="text-right text-sm">{totalQty} items</p>
-          </div>
+      {products.length === 0 ? (
+        <div className="text-center py-16">
+          <p className="text-slate-400 text-lg">Votre panier est vide.</p>
         </div>
-        <button
-          className="bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-medium uppercase hover:bg-green-600 focus:scale-105 active:scale-100 disabled:opacity-50"
-          disabled={busy}
-          onClick={handleCheckout}
-        >
-          Payer
-        </button>
-      </div>
+      ) : (
+        <>
+          <table className="min-w-full divide-y divide-slate-200">
+            <thead className="bg-slate-100">
+              <tr>
+                <th className="pl-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Image</th>
+                <th className="py-3 pl-2 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Produit</th>
+                <th className="py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Prix</th>
+                <th className="py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Quantité</th>
+                <th className="py-3 text-right pr-4 text-xs font-medium text-slate-500 uppercase tracking-wider"></th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-slate-100">
+              {products.map((product, index) => (
+                <tr key={product.id} className={index % 2 === 0 ? "bg-white" : "bg-slate-50"}>
+                  <td className="pl-4 py-3 h-16 w-16">
+                    <Image
+                      src={product.thumbnail}
+                      alt={product.title}
+                      height={40}
+                      width={40}
+                      className="rounded-md"
+                    />
+                  </td>
+                  <td className="py-4 text-xs md:text-base lg:text-lg pl-2 text-slate-700">
+                    {product.title}
+                  </td>
+                  <td className="py-4 font-semibold text-md md:text-lg lg:text-xl text-slate-900">
+                    {formatPrice(product.totalPrice)}
+                  </td>
+                  <td className="py-4">
+                    <CartCountUpdater
+                      onDecrement={() => updateCart(product.id, -1)}
+                      onIncrement={() => updateCart(product.id, 1)}
+                      value={product.qty}
+                      disabled={busy}
+                    />
+                  </td>
+                  <td className="py-4 text-right pr-4">
+                    <button
+                      onClick={() => updateCart(product.id, -product.qty)}
+                      disabled={busy}
+                      className="text-red-500 hover:text-red-600 transition-colors disabled:opacity-50"
+                    >
+                      <XMarkIcon className="w-5 h-5" />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          <div className="bg-slate-50 rounded-xl p-6 mt-6">
+            <div className="flex justify-between items-center">
+              <p className="font-semibold text-2xl text-slate-800">Total</p>
+              <div className="text-right">
+                <p className="font-bold text-2xl text-slate-900">{formatPrice(cartTotal)}</p>
+                <p className="text-sm text-slate-500">{totalQty} items</p>
+              </div>
+            </div>
+            <button
+              className="w-full mt-4 bg-amber-500 text-white py-3 rounded-lg font-semibold text-sm uppercase hover:bg-amber-600 transition-colors focus:scale-105 active:scale-100 disabled:opacity-50"
+              disabled={busy}
+              onClick={handleCheckout}
+            >
+              Payer
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };

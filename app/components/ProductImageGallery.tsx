@@ -16,10 +16,9 @@ const settings: Settings = {
   slidesToScroll: 1,
   arrows: false,
   autoplay: false,
-  className: "w-[420px]",
+  className: "w-full max-w-[420px]",
 };
 
-// Pixel GIF code adapted from https://stackoverflow.com/a/33919020/266535
 const keyStr =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 
@@ -40,42 +39,43 @@ export default function ProductImageGallery(props: Props) {
   const slider = useRef<Slider>(null);
 
   return (
-    <div>
-      <Slider
-        {...settings}
-        afterChange={(currentSlide) => {
-          setCurrentSlide(currentSlide);
-        }}
-        ref={slider}
-      >
-        {images.map((img, index) => {
-          return (
+    <div className="max-w-[420px]">
+      <div className="rounded-xl overflow-hidden bg-slate-100">
+        <Slider
+          {...settings}
+          afterChange={(currentSlide) => {
+            setCurrentSlide(currentSlide);
+          }}
+          ref={slider}
+        >
+          {images.map((img, index) => (
             <Image
               key={index}
               src={img}
-              alt="testing"
+              alt="Product"
               width={420}
               height={420}
               placeholder="blur"
               blurDataURL={rgbDataURL(237, 181, 6)}
+              className="object-cover"
             />
-          );
-        })}
-      </Slider>
-      <div className="flex py-2 space-x-2">
-        {images.map((img, index) => {
-          return (
-            <Image
-              onClick={() => slider.current?.slickGoTo(index)}
-              className={index === currentSlide ? "ring ring-blue-500" : ""}
-              key={index}
-              src={img}
-              alt="testing"
-              width={80}
-              height={80}
-            />
-          );
-        })}
+          ))}
+        </Slider>
+      </div>
+      <div className="flex gap-2 mt-3">
+        {images.map((img, index) => (
+          <button
+            key={index}
+            onClick={() => slider.current?.slickGoTo(index)}
+            className={`rounded-lg overflow-hidden border-2 transition-all ${
+              index === currentSlide
+                ? "border-amber-500 shadow-md"
+                : "border-transparent opacity-60 hover:opacity-100"
+            }`}
+          >
+            <Image src={img} alt="Thumbnail" width={72} height={72} className="object-cover" />
+          </button>
+        ))}
       </div>
     </div>
   );

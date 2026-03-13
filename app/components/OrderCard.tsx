@@ -84,7 +84,7 @@ export default function OrderCard({ order, disableUpdate = true }: Props) {
   const formattedDate = format(createdAtDate, "d MMMM yyyy", { locale: fr });
 
   return (
-    <div className="space-y-4 rounded border-blue-gray-800 border border-dashed p-2">
+    <div className="space-y-4 bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
       <div className="flex justify-between">
         <div className="flex space-x-2">
           <Image
@@ -121,7 +121,7 @@ export default function OrderCard({ order, disableUpdate = true }: Props) {
             <select
               disabled={disableUpdate || isPending}
               value={order.deliveryStatus}
-              className="uppercase w-full border border-gray-300 rounded-lg px-3 py-3 text-sm outline-none focus:border-blue-500 transition bg-white disabled:opacity-50"
+              className="uppercase w-full border border-slate-200 rounded-lg px-3 py-3 text-sm outline-none focus:border-slate-400 transition bg-slate-50 disabled:opacity-50"
               onChange={(e) => {
                 const deliveryStatus = e.target.value;
                 startTransition(async () => {
@@ -138,15 +138,15 @@ export default function OrderCard({ order, disableUpdate = true }: Props) {
                 </option>
               ))}
             </select>
-            <label className="absolute -top-2 left-2 bg-white px-1 text-xs text-gray-500">
+            <label className="absolute -top-2 left-2 bg-slate-50 px-1 text-xs text-slate-500">
               Status de la commande
             </label>
           </div>
         </div>
       </div>
 
-      <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-100">
+      <table className="min-w-full divide-y divide-slate-200">
+        <thead className="bg-slate-100">
           <tr>
             <th className="py-2 px-4 text-left">Produit/s</th>
             <th className="py-2 px-4 text-left">Total</th>

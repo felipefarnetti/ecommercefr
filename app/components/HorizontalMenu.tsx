@@ -20,7 +20,7 @@ export default function HorizontalMenu({ children }: Props) {
   return (
     <div className="relative flex items-center">
       <button
-        className="px-1 transition hover:opacity-70 shrink-0"
+        className="p-1.5 bg-white shadow-md rounded-full border border-slate-200 text-slate-600 hover:bg-slate-50 transition shrink-0"
         onClick={scrollLeft}
       >
         <ChevronLeftIcon className="w-4 h-4" />
@@ -33,7 +33,7 @@ export default function HorizontalMenu({ children }: Props) {
         {children}
       </div>
       <button
-        className="px-1 transition hover:opacity-70 shrink-0"
+        className="p-1.5 bg-white shadow-md rounded-full border border-slate-200 text-slate-600 hover:bg-slate-50 transition shrink-0"
         onClick={scrollRight}
       >
         <ChevronRightIcon className="w-4 h-4" />

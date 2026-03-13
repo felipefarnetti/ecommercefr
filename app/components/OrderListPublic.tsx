@@ -40,7 +40,7 @@ export default function OrderListPublic({ orders }: { orders: Orders[] }) {
         });
         return (
           <div key={order.id} className="py-4 space-y-4">
-            <div className="flex justify-between items-center bg-blue-gray-400 text-white p-2">
+            <div className="flex justify-between items-center bg-slate-700 text-white p-2 rounded-lg">
               <p>Commandé le: {formattedDate}</p>
               <p>TOTAL {formatPrice(order.total)}</p>
               <span className="inline-block bg-amber-500 text-white text-xs font-medium px-3 py-1 rounded-full">
@@ -68,7 +68,7 @@ export default function OrderListPublic({ orders }: { orders: Orders[] }) {
                 </div>
               );
             })}
-            <div className="text-right p-2 border-t border-b">
+            <div className="text-right p-2 border-t border-b border-slate-100">
               <p>
                 Status de la commande:{" "}
                 <span className="font-semibold uppercase">

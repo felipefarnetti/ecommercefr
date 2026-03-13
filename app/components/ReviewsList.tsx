@@ -24,7 +24,7 @@ export default function ReviewsList({ reviews }: Props) {
     <div className="space-y-4">
       {reviews?.map((review) => {
         return (
-          <div className="space-y-2" key={review.id}>
+          <div className="bg-white border border-slate-100 rounded-xl p-4 space-y-2" key={review.id}>
             <div className="flex items-center space-x-2">
               <Image
                 width={40}

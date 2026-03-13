@@ -89,7 +89,7 @@ export default function UpdatePassword({ token, userId }: Props) {
           onBlur={handleBlur}
           type="password"
           placeholder=" "
-          className={`peer w-full border ${error("password1") ? "border-red-500" : "border-gray-300"} rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-blue-500 transition`}
+          className={`peer w-full bg-slate-50 border ${error("password1") ? "border-red-500" : "border-slate-200"} rounded-lg px-4 py-3 text-sm outline-none focus:border-slate-400 focus:bg-white transition-all`}
         />
         <label className="absolute left-3 top-2 text-xs text-gray-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
           Mot de passe
@@ -103,7 +103,7 @@ export default function UpdatePassword({ token, userId }: Props) {
           onBlur={handleBlur}
           type="password"
           placeholder=" "
-          className={`peer w-full border ${error("password2") ? "border-red-500" : "border-gray-300"} rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-blue-500 transition`}
+          className={`peer w-full bg-slate-50 border ${error("password2") ? "border-red-500" : "border-slate-200"} rounded-lg px-4 py-3 text-sm outline-none focus:border-slate-400 focus:bg-white transition-all`}
         />
         <label className="absolute left-3 top-2 text-xs text-gray-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
           Confirmez votre mot de passe
@@ -111,7 +111,7 @@ export default function UpdatePassword({ token, userId }: Props) {
       </div>
       <button
         type="submit"
-        className="w-full bg-indigo-500 text-white py-2 px-4 rounded-lg text-sm font-medium uppercase hover:bg-indigo-600 disabled:opacity-50"
+        className="w-full bg-slate-900 text-white py-3 rounded-lg font-semibold hover:bg-slate-800 transition-colors disabled:opacity-50"
         disabled={isSubmitting}
       >
         Réinitialiser le mot de passe

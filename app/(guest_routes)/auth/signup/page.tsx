@@ -82,7 +82,7 @@ const SignUp = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder=" "
-          className={`peer w-full border ${error("name") ? "border-red-500" : "border-gray-300"} rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-blue-500 transition`}
+          className={`peer w-full bg-slate-50 border ${error("name") ? "border-red-500" : "border-slate-200"} rounded-lg px-4 py-3 text-sm outline-none focus:border-slate-400 focus:bg-white transition-all`}
         />
         <label className="absolute left-3 top-2 text-xs text-gray-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
           Nom
@@ -95,7 +95,7 @@ const SignUp = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder=" "
-          className={`peer w-full border ${error("email") ? "border-red-500" : "border-gray-300"} rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-blue-500 transition`}
+          className={`peer w-full bg-slate-50 border ${error("email") ? "border-red-500" : "border-slate-200"} rounded-lg px-4 py-3 text-sm outline-none focus:border-slate-400 focus:bg-white transition-all`}
         />
         <label className="absolute left-3 top-2 text-xs text-gray-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
           E-mail
@@ -109,7 +109,7 @@ const SignUp = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder=" "
-          className={`peer w-full border ${error("password") ? "border-red-500" : "border-gray-300"} rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-blue-500 transition`}
+          className={`peer w-full bg-slate-50 border ${error("password") ? "border-red-500" : "border-slate-200"} rounded-lg px-4 py-3 text-sm outline-none focus:border-slate-400 focus:bg-white transition-all`}
         />
         <label className="absolute left-3 top-2 text-xs text-gray-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
           Mot de passe
@@ -123,7 +123,7 @@ const SignUp = () => {
           onBlur={handleBlur}
           type="password"
           placeholder=" "
-          className={`peer w-full border ${error("password2") ? "border-red-500" : "border-gray-300"} rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-blue-500 transition`}
+          className={`peer w-full bg-slate-50 border ${error("password2") ? "border-red-500" : "border-slate-200"} rounded-lg px-4 py-3 text-sm outline-none focus:border-slate-400 focus:bg-white transition-all`}
         />
         <label className="absolute left-3 top-2 text-xs text-gray-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
           Confirmer le mot de passe
@@ -132,13 +132,13 @@ const SignUp = () => {
       <button
         disabled={isSubmitting}
         type="submit"
-        className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg text-sm font-medium uppercase hover:bg-blue-600 disabled:opacity-50"
+        className="w-full bg-slate-900 text-white py-3 rounded-lg font-semibold hover:bg-slate-800 transition-colors disabled:opacity-50"
       >
         {"S'inscrire"}
       </button>
       <div className="flex items-center justify-between">
-        <Link href="/auth/signin">Se connecter</Link>
-        <Link href="/auth/forgot-password">Mot de passe oublié</Link>
+        <Link href="/auth/signin" className="text-amber-600 hover:text-amber-700 font-medium">Se connecter</Link>
+        <Link href="/auth/forgot-password" className="text-amber-600 hover:text-amber-700 font-medium">Mot de passe oublié</Link>
       </div>
       <div className="">
         {formErrors.map((value, index) => {

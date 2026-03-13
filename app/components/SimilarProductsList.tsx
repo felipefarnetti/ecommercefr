@@ -15,14 +15,14 @@ interface Props {
 export default function SimilarProductsList({ products }: Props) {
   return (
     <div className="py-6">
-      <h1 className="font-semibold text-lg mb-4 text-blue-gray-600">
+      <h1 className="text-xl font-bold mb-4 text-slate-900">
         Ça pourrait vous plaire
       </h1>
       <HorizontalMenu>
         {products.map((product) => {
           return (
             <Link href={`/${product.title}/${product.id}`} key={product.id}>
-              <div className="w-[150px] space-y-2 mr-2">
+              <div className="w-[150px] space-y-2 mr-2 rounded-xl border border-slate-100 hover:shadow-md transition p-2">
                 <Image
                   width={150}
                   height={150}

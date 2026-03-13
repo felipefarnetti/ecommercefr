@@ -73,7 +73,7 @@ export default function ProductTable(props: Props) {
     <div className="py-5">
       <div className="mb-4 flex flex-col justify-between gap-8 md:flex-row md:items-center">
         <div>
-          <h5 className="text-xl font-semibold text-blue-gray-800">
+          <h5 className="text-xl font-semibold text-slate-800">
             Produits
           </h5>
         </div>
@@ -81,7 +81,7 @@ export default function ProductTable(props: Props) {
           <SearchForm submitTo="/products/search$query=" />
           <Link
             href="/products/create"
-            className="select-none font-bold text-center uppercase transition-all text-xs py-2 px-4 rounded-lg bg-blue-500 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none flex items-center gap-3"
+            className="select-none font-bold text-center uppercase transition-all text-xs py-2 px-4 rounded-lg bg-slate-900 text-white shadow-md hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none flex items-center gap-3"
           >
             <PlusIcon strokeWidth={2} className="h-4 w-4" />{" "}
             <span>Ajouter</span>
@@ -89,15 +89,15 @@ export default function ProductTable(props: Props) {
         </div>
       </div>
       <div className="px-0">
-        <table className="w-full min-w-max table-auto text-left">
+        <table className="w-full min-w-max table-auto text-left bg-white rounded-xl overflow-hidden">
           <thead>
             <tr>
               {TABLE_HEAD.map((head) => (
                 <th
                   key={head}
-                  className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
+                  className="border-y border-slate-100 bg-slate-100 p-4"
                 >
-                  <span className="text-sm text-blue-gray-600 font-normal leading-none opacity-70">
+                  <span className="text-sm text-slate-600 font-normal leading-none opacity-70">
                     {head}
                   </span>
                 </th>
@@ -110,7 +110,7 @@ export default function ProductTable(props: Props) {
               const isLast = index === products.length - 1;
               const classes = isLast
                 ? "p-4"
-                : "p-4 border-b border-blue-gray-50";
+                : "p-4 border-b border-slate-50";
 
               return (
                 <tr key={id}>
@@ -124,39 +124,39 @@ export default function ProductTable(props: Props) {
                         className="w-12 h-12 rounded-lg object-cover"
                       />
                       <Link href={`/${title}/${id}`}>
-                        <span className="text-sm text-blue-gray-800 font-bold">
+                        <span className="text-sm text-slate-800 font-bold">
                           {truncate(title, 30)}
                         </span>
                       </Link>
                     </div>
                   </td>
                   <td className={classes}>
-                    <span className="text-sm text-blue-gray-800 font-normal">
+                    <span className="text-sm text-slate-800 font-normal">
                       {formatPrice(price.mrp)}
                     </span>
                   </td>
                   <td className={classes}>
-                    <span className="text-sm text-blue-gray-800 font-normal">
+                    <span className="text-sm text-slate-800 font-normal">
                       {formatPrice(price.salePrice)}
                     </span>
                   </td>
                   <td className={classes}>
                     <div className="w-max">
-                      <span className="text-sm text-blue-gray-800">
+                      <span className="text-sm text-slate-800">
                         {quantity}
                       </span>
                     </div>
                   </td>
                   <td className={classes}>
                     <div className="w-max">
-                      <span className="text-sm text-blue-gray-800">
+                      <span className="text-sm text-slate-800">
                         {category}
                       </span>
                     </div>
                   </td>
                   <td className={classes}>
                     <Link href={`/products/update/${id}`}>
-                      <button className="p-2 rounded-lg text-blue-gray-600 hover:bg-blue-gray-50">
+                      <button className="p-2 rounded-lg text-slate-600 hover:bg-slate-50">
                         <PencilIcon className="h-4 w-4" />
                       </button>
                     </Link>
@@ -168,27 +168,27 @@ export default function ProductTable(props: Props) {
         </table>
       </div>
       {showPageNavigator ? (
-        <div className="flex flex-col items-center justify-center border-t border-blue-gray-50 p-4">
+        <div className="flex flex-col items-center justify-center border-t border-slate-100 p-4">
           {/* Previous and Next buttons */}
           <div className="flex items-center gap-2">
             <button
               disabled={currentPageNo === 1}
               onClick={handleOnPrevPress}
-              className="px-4 py-2 text-blue-gray-900 hover:bg-blue-gray-50 rounded-lg text-sm font-medium uppercase disabled:opacity-50"
+              className="px-4 py-2 text-slate-900 hover:bg-slate-50 rounded-lg text-sm font-medium uppercase disabled:opacity-50"
             >
               Précédente
             </button>
             <button
               disabled={!hasMore}
               onClick={handleOnNextPress}
-              className="px-4 py-2 text-blue-gray-900 hover:bg-blue-gray-50 rounded-lg text-sm font-medium uppercase disabled:opacity-50"
+              className="px-4 py-2 text-slate-900 hover:bg-slate-50 rounded-lg text-sm font-medium uppercase disabled:opacity-50"
             >
               Suivante
             </button>
           </div>
           {/* Total number of products (moved below the buttons) */}
           <div className="mt-4">
-            <span className="text-sm text-blue-gray-800">
+            <span className="text-sm text-slate-800">
               Total : {totalProducts}
             </span>
           </div>

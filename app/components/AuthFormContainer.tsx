@@ -1,24 +1,21 @@
-// Importation des dépendances nécessaires
-import React, { FC, FormEventHandler, ReactNode } from "react";
+import React, { ReactNode } from "react";
 
-// Interface pour les propriétés (props) du composant
 interface Props {
-  title: string;
   children: ReactNode;
-  onSubmit?: FormEventHandler<HTMLFormElement>;
+  title: string;
+  onSubmit?(e: React.FormEvent<HTMLFormElement>): void;
 }
 
-// Composant pour le conteneur du formulaire d'authentification
-const AuthFormContainer: FC<Props> = ({ title, children, onSubmit }) => {
+export default function AuthFormContainer({ title, children, onSubmit }: Props) {
   return (
     <form
       onSubmit={onSubmit}
-      className="w-96 p-6 space-y-6 bg-white shadow-md rounded-md"
+      className="w-full max-w-md mx-auto bg-white rounded-2xl shadow-sm border border-slate-100 p-8"
     >
-      <h3 className="text-center font-semibold">{title}</h3>
+      <h1 className="text-2xl font-bold text-slate-900 text-center mb-6">
+        {title}
+      </h1>
       {children}
     </form>
   );
-};
-
-export default AuthFormContainer;
+}

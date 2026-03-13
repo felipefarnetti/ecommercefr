@@ -24,12 +24,12 @@ function ProfileAvatarInput({
             className="w-28 h-28 rounded-full object-cover"
           />
         ) : (
-          <div className="w-28 h-28 flex items-center justify-center rounded-full border-2 border-blue-gray-800 font-semibold text-xl">
+          <div className="w-28 h-28 flex items-center justify-center rounded-full border-2 border-slate-800 font-semibold text-xl">
             <span>{nameInitial}</span>
           </div>
         )}
         <label
-          className="absolute top-2 right-0 rounded-full bg-white"
+          className="absolute top-2 right-0 rounded-full bg-slate-900/60 hover:bg-slate-900/80 transition"
           htmlFor="avatar"
         >
           <input
@@ -42,7 +42,7 @@ function ProfileAvatarInput({
             hidden
             accept="image/*"
           />
-          <PencilIcon className="h-6 w-6 p-1 cursor-pointer" />
+          <PencilIcon className="h-6 w-6 p-1 cursor-pointer text-white" />
         </label>
       </div>
     </div>

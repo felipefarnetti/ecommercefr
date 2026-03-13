@@ -1,4 +1,3 @@
-// Importation des dépendances nécessaires
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,37 +8,46 @@ import {
 
 export default function Footer() {
   return (
-    <div className="bg-gradient-to-r from-blue-300 to-pink-100 text-black p-4 mt-5 rounded-lg">
-      <div className="container mx-auto text-center">
-        <p className="text-sm" style={{ marginBottom: 7 }}></p>
-        <p className="text-sm" style={{ marginBottom: 5, marginTop: 5 }}>
-          <Link className="text-sm md:text-lg mr-2" href="/contact">
-            Nous contacter
-          </Link>
-          |
-          <Link className="text-sm md:text-lg ml-2" href="/selling-conditions">
-            Conditions de vente
-          </Link>
-        </p>
-        <p className="text-sm mb-2">
-          <span className="flex items-center justify-center mb-2">
-            Cartes de crédit acceptées :
+    <footer className="bg-slate-900 text-slate-300 mt-12">
+      <div className="max-w-screen-xl mx-auto px-4 py-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-4">
+            <Link
+              className="text-sm hover:text-white transition-colors"
+              href="/contact"
+            >
+              Nous contacter
+            </Link>
+            <span className="text-slate-600">|</span>
+            <Link
+              className="text-sm hover:text-white transition-colors"
+              href="/selling-conditions"
+            >
+              Conditions de vente
+            </Link>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-slate-500 mr-1">Paiement sécurisé</span>
             <FontAwesomeIcon
-              className="h-10 md:h-12 w-auto ml-4 text-green-700"
+              className="h-8 w-auto text-slate-400 hover:text-white transition-colors"
               icon={faCcVisa}
             />
             <FontAwesomeIcon
-              className="h-10 md:h-12 w-auto ml-4 text-red-600"
+              className="h-8 w-auto text-slate-400 hover:text-white transition-colors"
               icon={faCcMastercard}
             />
             <FontAwesomeIcon
-              className="h-10 md:h-12 w-auto ml-4 text-blue-600"
+              className="h-8 w-auto text-slate-400 hover:text-white transition-colors"
               icon={faCcAmex}
             />
-          </span>
-        </p>
-        <p>Expédition sous 48 heures</p>
+          </div>
+
+          <p className="text-xs text-slate-500">
+            Expédition sous 48 heures
+          </p>
+        </div>
       </div>
-    </div>
+    </footer>
   );
 }

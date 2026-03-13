@@ -56,7 +56,7 @@ export default function ProfileForm({ id, name, avatar, email }: Props) {
           onChange={({ target }) => setUserName(target.value)}
           value={userName}
           placeholder=" "
-          className="peer w-full border border-gray-300 rounded-lg px-3 pt-5 pb-2 text-sm font-semibold outline-none focus:border-blue-500 transition"
+          className="peer w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm font-semibold outline-none focus:border-slate-400 focus:bg-white transition-all"
         />
         <label className="absolute left-3 top-2 text-xs text-gray-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
           Nom
@@ -65,7 +65,7 @@ export default function ProfileForm({ id, name, avatar, email }: Props) {
       {showSubmitButton ? (
         <button
           type="submit"
-          className="w-32 lg:w-full bg-blue-500 text-white py-2 px-4 rounded-lg text-sm font-medium uppercase hover:bg-blue-600 hover:scale-[0.98] disabled:opacity-50"
+          className="bg-slate-900 text-white py-2.5 px-6 rounded-lg font-semibold hover:bg-slate-800 transition-colors disabled:opacity-50"
           disabled={isPending}
         >
           Envoyer

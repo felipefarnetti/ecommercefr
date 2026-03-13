@@ -9,7 +9,7 @@ interface Props {
 // Composant de mise en page utilisé pour les pages d'authentification
 const AuthLayout: FC<Props> = ({ children }) => {
   return (
-    <div className="h-screen flex justify-center items-center">{children}</div>
+    <div className="h-screen flex justify-center items-center bg-slate-50">{children}</div>
   );
 };
 

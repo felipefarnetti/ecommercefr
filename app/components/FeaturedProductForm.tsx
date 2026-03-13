@@ -178,7 +178,7 @@ export default function FeaturedProductForm({ initialValue }: Props) {
           onChange={handleChange}
           hidden
         />
-        <div className="h-[380px] w-full flex flex-col items-center justify-center border border-dashed border-blue-gray-400 rounded cursor-pointer relative">
+        <div className="h-[380px] w-full flex flex-col items-center justify-center border border-dashed border-slate-300 rounded-lg cursor-pointer relative">
           {poster ? (
             <Image alt="banner" src={poster || initialValue?.banner} fill />
           ) : (
@@ -208,9 +208,9 @@ export default function FeaturedProductForm({ initialValue }: Props) {
             value={link}
             onChange={handleChange}
             placeholder=" "
-            className="peer w-full border border-gray-300 rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-blue-500 transition"
+            className="peer w-full bg-slate-50 border border-slate-200 rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-slate-400 transition"
           />
-          <label className="absolute left-3 top-2 text-xs text-gray-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
+          <label className="absolute left-3 top-2 text-xs text-slate-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
             Lien
           </label>
         </div>
@@ -220,9 +220,9 @@ export default function FeaturedProductForm({ initialValue }: Props) {
             value={linkTitle}
             onChange={handleChange}
             placeholder=" "
-            className="peer w-full border border-gray-300 rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-blue-500 transition"
+            className="peer w-full bg-slate-50 border border-slate-200 rounded-lg px-3 pt-5 pb-2 text-sm outline-none focus:border-slate-400 transition"
           />
-          <label className="absolute left-3 top-2 text-xs text-gray-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
+          <label className="absolute left-3 top-2 text-xs text-slate-500 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs transition-all">
             Titre du Lien
           </label>
         </div>
@@ -231,7 +231,7 @@ export default function FeaturedProductForm({ initialValue }: Props) {
         <button
           disabled={isPending}
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium uppercase hover:bg-blue-600 disabled:opacity-50"
+          className="bg-slate-900 text-white px-4 py-2 rounded-lg text-sm font-medium uppercase hover:bg-slate-800 disabled:opacity-50"
         >
           {isForUpdate ? "Mettre à jour" : "Soumettre"}
         </button>

@@ -3,7 +3,7 @@
 @import "slick-carousel/slick/slick-theme.css";
 
 @theme {
-  /* blue-gray color palette (mapped to slate for MT compatibility) */
+  /* blue-gray palette (legacy compat) */
   --color-blue-gray-50: #f8fafc;
   --color-blue-gray-100: #f1f5f9;
   --color-blue-gray-200: #e2e8f0;
@@ -16,13 +16,32 @@
   --color-blue-gray-900: #0f172a;
 }
 
+/* Base typography */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Slick customizations */
 .slick-next::before,
 .slick-prev::before {
-  color: #000 !important;
+  color: #334155 !important;
+  font-size: 24px !important;
 }
 
 .slick-dots {
-  bottom: 6px !important;
+  bottom: 12px !important;
+}
+
+.slick-dots li button::before {
+  font-size: 10px !important;
+  color: #fff !important;
+  opacity: 0.5 !important;
+}
+
+.slick-dots li.slick-active button::before {
+  color: #fff !important;
+  opacity: 1 !important;
 }
 
 /* Protect react-slick from Tailwind 4 preflight reset */
@@ -68,12 +87,21 @@
   display: block !important;
 }
 
-/* chrome and chromium based */
+/* Scrollbar hiding */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 .react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
   display: none;
 }
 
 .react-horizontal-scrolling-menu--scroll-container {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

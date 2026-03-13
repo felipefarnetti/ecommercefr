@@ -32,15 +32,15 @@ export default function EmailVerificationBanner({ id, verified }: Props) {
   if (verified) return null; // Si l'email est vérifié, ne rien afficher
 
   return (
-    <div className="p-2 text-center bg-blue-50">
-      <span>
+    <div className="p-3 text-center bg-amber-50 border border-amber-200 rounded-lg">
+      <span className="text-amber-800">
         {"Il semblerait que vous n'ayez pas encore vérifié votre email."}
       </span>
 
       <button
         disabled={submitting}
         onClick={applyForReverification}
-        className="ml-2 font-semibold underline"
+        className="ml-2 text-amber-600 font-semibold underline disabled:opacity-50"
       >
         {submitting
           ? "Génération du lien..."

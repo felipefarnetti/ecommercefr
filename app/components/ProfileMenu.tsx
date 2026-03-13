@@ -42,7 +42,7 @@ export default function ProfileMenu({ menuItems, avatar }: Props) {
           alt="avatar"
           width={36}
           height={36}
-          className="w-9 h-9 rounded-full border border-blue-700 p-0.5 object-cover"
+          className="w-9 h-9 rounded-full border border-slate-300 p-0.5 object-cover"
         />
         <ChevronDownIcon
           strokeWidth={2.5}
@@ -53,13 +53,13 @@ export default function ProfileMenu({ menuItems, avatar }: Props) {
       </button>
 
       {isMenuOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 p-1 z-50">
+        <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-100 p-1 z-50">
           {menuItems.map(({ href, icon, label }) => {
             return (
               <Link key={href} href={href} className="outline-none">
                 <button
                   onClick={closeMenu}
-                  className="flex items-center gap-2 rounded w-full px-3 py-2 text-sm hover:bg-blue-gray-50 text-left"
+                  className="flex items-center gap-2 rounded w-full px-3 py-2 text-sm hover:bg-slate-50 text-slate-700 text-left"
                 >
                   {icon}
                   <span>{label}</span>
@@ -72,7 +72,7 @@ export default function ProfileMenu({ menuItems, avatar }: Props) {
             <Link href="/dashboard" className="outline-none">
               <button
                 onClick={closeMenu}
-                className="flex items-center gap-2 rounded w-full px-3 py-2 text-sm hover:bg-blue-gray-50 text-left"
+                className="flex items-center gap-2 rounded w-full px-3 py-2 text-sm hover:bg-slate-50 text-slate-700 text-left"
               >
                 <RectangleGroupIcon className="h-4 w-4" />
                 <span>Backoffice</span>
@@ -80,7 +80,7 @@ export default function ProfileMenu({ menuItems, avatar }: Props) {
             </Link>
           ) : null}
 
-          <div className="px-3 py-2 text-sm hover:bg-blue-gray-50 rounded">
+          <div className="px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded">
             <SignOutButton>
               <p className="flex items-center gap-2 rounded">
                 <PowerIcon className="h-4 w-4" />
