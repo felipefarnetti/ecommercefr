@@ -22,8 +22,8 @@ interface Props {
 
 const RecentReviewsList = ({ reviews }: Props) => {
   return (
-    <div className="space-y-4 w-96 rounded overflow-hidden shadow-lg">
-      <h2 className="bg-blue-gray-600 text-white p-2 font-semibold text-lg">
+    <div className="space-y-4 w-full lg:w-96 rounded-xl overflow-hidden shadow-sm border border-slate-200 bg-white">
+      <h2 className="bg-slate-800 text-white p-3 font-semibold text-lg">
         Évaluation récentes
       </h2>
 

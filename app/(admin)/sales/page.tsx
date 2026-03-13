@@ -84,8 +84,8 @@ export default async function Sales() {
         </div>
       </GridView>
       <div className="mt-10">
-        <h1 className="font-semibold text-3xl mb-4">
-          Historique des ventes des 7 derniers jours
+        <h1 className="font-semibold text-xl md:text-3xl mb-4">
+          Historique des ventes (7 derniers jours)
         </h1>
         <SalesChart data={salesData.sales} />
       </div>

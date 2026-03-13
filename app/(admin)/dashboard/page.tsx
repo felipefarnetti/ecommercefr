@@ -88,7 +88,7 @@ export default async function Dashboard() {
 
   // Renvoyer le composant Dashboard
   return (
-    <div className="flex space-x-6">
+    <div className="flex flex-col lg:flex-row gap-6">
       <RecentOrdersList orders={orders} />
       <RecentReviewsList reviews={reviews} />
     </div>

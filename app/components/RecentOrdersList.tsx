@@ -16,8 +16,8 @@ interface Props {
 
 const RecentOrdersList = ({ orders }: Props) => {
   return (
-    <div className="space-y-4 w-96 rounded overflow-hidden shadow-lg">
-      <div className="bg-blue-gray-600 text-white p-2 flex justify-between items-center">
+    <div className="space-y-4 w-full lg:w-96 rounded-xl overflow-hidden shadow-sm border border-slate-200 bg-white">
+      <div className="bg-slate-800 text-white p-3 flex justify-between items-center">
         <h2 className="font-semibold text-lg">Commandes récentes</h2>
         <Link href="/orders">Voir tout</Link>
       </div>
