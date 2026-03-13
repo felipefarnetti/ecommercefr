@@ -70,42 +70,42 @@ export default function ProductCard({ product }: Props) {
   };
 
   return (
-    <div className="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100">
-      <Link href={`/${product.title}/${product.id}`}>
-        <div className="relative aspect-square overflow-hidden">
+    <div className="group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100 flex flex-col">
+      <Link href={`/${product.title}/${product.id}`} className="flex-1">
+        <div className="relative aspect-[4/3] overflow-hidden">
           <Image
             src={product.thumbnail}
             alt={product.title}
             fill
-            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
+            sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
             className="object-cover group-hover:scale-105 transition-transform duration-500"
           />
           {product.price.base !== product.price.discounted && (
-            <span className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-full">
+            <span className="absolute top-2 left-2 bg-red-500 text-white text-[10px] md:text-xs font-bold px-2 py-0.5 rounded-full">
               -{product.sale}%
             </span>
           )}
         </div>
-        <div className="p-4">
-          <h3 className="font-semibold text-slate-800 line-clamp-1 mb-1">
+        <div className="p-2.5 md:p-3">
+          <h3 className="font-semibold text-slate-800 text-xs md:text-sm line-clamp-1">
             {truncate(product.title, 50)}
           </h3>
-          <p className="text-slate-500 text-xs line-clamp-2 mb-3">
-            {truncate(product.description, 60)}
+          <p className="text-slate-500 text-[10px] md:text-xs line-clamp-1 mt-0.5 mb-1.5">
+            {truncate(product.description, 50)}
           </p>
-          <div className="flex items-center justify-between">
-            <div className="flex items-baseline gap-2">
+          <div className="flex items-center justify-between gap-1">
+            <div className="flex items-baseline gap-1.5">
               {product.price.base !== product.price.discounted ? (
                 <>
-                  <span className="text-lg font-bold text-slate-900">
+                  <span className="text-sm md:text-base font-bold text-slate-900">
                     {formatPrice(product.price.discounted)}
                   </span>
-                  <span className="text-sm text-slate-400 line-through">
+                  <span className="text-[10px] md:text-xs text-slate-400 line-through">
                     {formatPrice(product.price.base)}
                   </span>
                 </>
               ) : (
-                <span className="text-lg font-bold text-slate-900">
+                <span className="text-sm md:text-base font-bold text-slate-900">
                   {formatPrice(product.price.base)}
                 </span>
               )}
@@ -117,18 +117,18 @@ export default function ProductCard({ product }: Props) {
         </div>
       </Link>
 
-      <div className="px-4 pb-4 flex gap-2">
+      <div className="px-2.5 pb-2.5 md:px-3 md:pb-3 flex gap-1.5">
         <button
           onClick={() => startTransition(async () => await addToCart())}
           disabled={isPending}
-          className="flex-1 text-xs font-semibold uppercase py-2.5 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 transition-colors disabled:opacity-50"
+          className="flex-1 text-[10px] md:text-xs font-semibold uppercase py-2 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 transition-colors disabled:opacity-50"
         >
           Ajouter au panier
         </button>
         <button
           disabled={isPending}
           onClick={() => startTransition(async () => await handleCheckout())}
-          className="flex-1 text-xs font-semibold uppercase py-2.5 rounded-lg bg-amber-500 text-white hover:bg-amber-600 transition-colors disabled:opacity-50"
+          className="flex-1 text-[10px] md:text-xs font-semibold uppercase py-2 rounded-lg bg-amber-500 text-white hover:bg-amber-600 transition-colors disabled:opacity-50"
         >
           Acheter
         </button>

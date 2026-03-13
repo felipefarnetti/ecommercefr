@@ -1,9 +1,8 @@
 "use client";
 import React, { ChangeEventHandler } from "react";
 import { TrashIcon, PhotoIcon } from "@heroicons/react/24/outline";
-
+import Image from "next/image";
 import ImageInput from "@ui/ImageInput";
-import SelectedImageThumb from "@ui/SelectedImageThumb";
 
 interface Props {
   id: string;
@@ -33,14 +32,20 @@ export default function ImageSelector({
     <div className="flex flex-wrap items-center gap-3">
       {images?.map((img, index) => {
         return (
-          <div key={index} className="relative">
-            <SelectedImageThumb src={img} />
+          <div key={index} className="relative group/img w-20 h-20 rounded-lg overflow-hidden border border-slate-200">
+            <Image
+              src={img}
+              alt="product"
+              fill
+              sizes="80px"
+              className="object-cover"
+            />
             {multiple ? (
               <div
                 onClick={() => onRemove && onRemove(index)}
-                className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white rounded cursor-pointer"
+                className="absolute inset-0 bg-black/0 group-hover/img:bg-black/50 flex items-center justify-center text-white opacity-0 group-hover/img:opacity-100 transition-all cursor-pointer"
               >
-                <TrashIcon className="w-4 h-4" />
+                <TrashIcon className="w-5 h-5" />
               </div>
             ) : null}
           </div>
