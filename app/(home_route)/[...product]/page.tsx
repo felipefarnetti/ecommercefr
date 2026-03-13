@@ -24,7 +24,7 @@ interface Props {
 const fetchProduct = async (productId: string) => {
   if (!isValidObjectId(productId)) return redirect("/404");
 
-  await startDb;
+  await startDb();
   const product = await ProductModel.findById(productId);
   if (!product) return redirect("/404");
 
@@ -57,7 +57,7 @@ const fetchProduct = async (productId: string) => {
 
 // Fonction asynchrone pour récupérer les avis sur le produit
 const fetchProductReviews = async (productId: string) => {
-  await startDb;
+  await startDb();
 
   const reviews = await ReviewModel.find({ product: productId }).populate<{
     userId: { _id: ObjectId; name: string; avatar?: { url: string } };
