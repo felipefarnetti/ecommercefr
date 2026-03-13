@@ -1,12 +1,9 @@
 "use client";
-// Importation des dépendances nécessaires
 import Link from "next/link";
 import React, { useTransition } from "react";
 import truncate from "truncate";
 import { deleteFeaturedProduct } from "@app/(admin)/products/featured/action";
 import { useRouter } from "next/navigation";
-
-const TABLE_HEAD = ["Detail", "Product", ""];
 
 interface Props {
   products: Products[];
@@ -24,7 +21,6 @@ export default function FeaturedProductTable({ products }: Props) {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
-  // Fonction pour supprimer un produit en vedette par son ID
   const handleDelete = async (id: string) => {
     await deleteFeaturedProduct(id);
     router.refresh();
@@ -32,11 +28,12 @@ export default function FeaturedProductTable({ products }: Props) {
 
   return (
     <div className="py-5">
-      <div className="px-0">
+      {/* Desktop table */}
+      <div className="hidden md:block">
         <table className="w-full min-w-max table-auto text-left bg-white rounded-xl overflow-hidden">
           <thead>
             <tr>
-              {TABLE_HEAD.map((head, index) => (
+              {["Détail", "Produit", "Actions"].map((head, index) => (
                 <th
                   key={index}
                   className="border-y border-slate-100 bg-slate-100 p-4"
@@ -59,11 +56,9 @@ export default function FeaturedProductTable({ products }: Props) {
               return (
                 <tr key={id}>
                   <td className={classes}>
-                    <div className="flex items-center gap-3">
-                      <span className="text-sm text-slate-800 font-bold">
-                        {truncate(title, 100)}
-                      </span>
-                    </div>
+                    <span className="text-sm text-slate-800 font-bold">
+                      {truncate(title, 100)}
+                    </span>
                   </td>
                   <td className={classes}>
                     <Link href={link}>
@@ -73,7 +68,7 @@ export default function FeaturedProductTable({ products }: Props) {
                     </Link>
                   </td>
                   <td className={classes}>
-                    <div className="flex items-center">
+                    <div className="flex items-center gap-2">
                       <Link
                         className="font-semibold uppercase text-xs text-slate-600 hover:underline"
                         href={`/products/featured/update?id=${id}`}
@@ -87,9 +82,9 @@ export default function FeaturedProductTable({ products }: Props) {
                             await handleDelete(item.id);
                           });
                         }}
-                        className="px-4 py-2 text-red-500 hover:bg-red-50 rounded-lg text-sm font-medium uppercase disabled:opacity-50"
+                        className="px-3 py-1.5 text-red-500 hover:bg-red-50 rounded-lg text-xs font-medium uppercase disabled:opacity-50"
                       >
-                        {isPending ? "En train de supprimer" : "Suprimmer"}
+                        {isPending ? "Suppression..." : "Supprimer"}
                       </button>
                     </div>
                   </td>
@@ -98,6 +93,48 @@ export default function FeaturedProductTable({ products }: Props) {
             })}
           </tbody>
         </table>
+      </div>
+
+      {/* Mobile cards */}
+      <div className="md:hidden space-y-3">
+        {products.map((item) => {
+          const { id, link, title } = item;
+          return (
+            <div
+              key={id}
+              className="bg-white rounded-xl border border-slate-200 p-4 space-y-3"
+            >
+              <p className="text-sm font-bold text-slate-800">{title}</p>
+              <div className="flex items-center justify-between">
+                <Link
+                  href={link}
+                  className="text-xs text-amber-600 font-semibold hover:underline"
+                >
+                  Voir le produit
+                </Link>
+                <div className="flex items-center gap-2">
+                  <Link
+                    className="text-xs font-semibold text-slate-600 hover:underline uppercase"
+                    href={`/products/featured/update?id=${id}`}
+                  >
+                    Modifier
+                  </Link>
+                  <button
+                    disabled={isPending}
+                    onClick={() => {
+                      startTransition(async () => {
+                        await handleDelete(item.id);
+                      });
+                    }}
+                    className="text-xs text-red-500 font-medium uppercase disabled:opacity-50"
+                  >
+                    {isPending ? "..." : "Supprimer"}
+                  </button>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

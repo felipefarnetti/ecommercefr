@@ -30,7 +30,7 @@ export default function ImageSelector({
   );
 
   return (
-    <div className="flex items-center space-x-4">
+    <div className="flex flex-wrap items-center gap-3">
       {images?.map((img, index) => {
         return (
           <div key={index} className="relative">

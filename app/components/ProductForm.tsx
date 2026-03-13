@@ -152,8 +152,10 @@ export default function ProductForm(props: Props) {
   };
 
   return (
-    <div className="p-4 max-w-3xl mx-auto">
-      <h1 className="mb-2 text-xl">Ajouter un noouveau produit</h1>
+    <div className="px-2 md:p-4 max-w-3xl mx-auto">
+      <h1 className="mb-4 text-xl md:text-2xl font-bold text-slate-900">
+        {isForUpdate ? "Modifier le produit" : "Ajouter un nouveau produit"}
+      </h1>
 
       <form
         action={() =>
@@ -229,9 +231,9 @@ export default function ProductForm(props: Props) {
           </select>
         </div>
 
-        <div className="flex space-x-4">
+        <div className="flex flex-col sm:flex-row gap-4">
           <div className="space-y-4 flex-1">
-            <h3>Prix</h3>
+            <h3 className="font-semibold text-slate-700">Prix</h3>
 
             <div className="relative w-full">
               <input
@@ -264,7 +266,7 @@ export default function ProductForm(props: Props) {
           </div>
 
           <div className="space-y-4 flex-1">
-            <h3>Stock</h3>
+            <h3 className="font-semibold text-slate-700">Stock</h3>
 
             <div className="relative w-full">
               <input

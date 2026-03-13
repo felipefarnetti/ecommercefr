@@ -88,9 +88,14 @@ export default async function Dashboard() {
 
   // Renvoyer le composant Dashboard
   return (
-    <div className="flex flex-col lg:flex-row gap-6">
-      <RecentOrdersList orders={orders} />
-      <RecentReviewsList reviews={reviews} />
+    <div className="space-y-6">
+      <h1 className="text-xl md:text-2xl font-bold text-slate-900">
+        Tableau de bord
+      </h1>
+      <div className="flex flex-col lg:flex-row gap-6">
+        <RecentOrdersList orders={orders} />
+        <RecentReviewsList reviews={reviews} />
+      </div>
     </div>
   );
 }

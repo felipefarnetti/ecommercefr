@@ -55,10 +55,15 @@ export default async function Orders() {
 
   // Renvoyer la liste des commandes
   return (
-    <div className="py-4 space-y-4">
-      {orders.map((order) => {
-        return <OrderCard order={order} key={order.id} disableUpdate={false} />;
-      })}
+    <div className="py-4 space-y-6">
+      <h1 className="text-xl md:text-2xl font-bold text-slate-900">
+        Commandes
+      </h1>
+      <div className="space-y-4">
+        {orders.map((order) => {
+          return <OrderCard order={order} key={order.id} disableUpdate={false} />;
+        })}
+      </div>
     </div>
   );
 }

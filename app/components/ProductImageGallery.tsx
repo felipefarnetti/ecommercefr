@@ -24,7 +24,7 @@ export default function ProductImageGallery(props: Props) {
   const slider = useRef<Slider>(null);
 
   return (
-    <div className="w-full max-w-[480px]">
+    <div className="w-[80%] mx-auto md:w-full max-w-[480px]">
       <div className="rounded-xl overflow-hidden bg-slate-100">
         <Slider
           {...settings}

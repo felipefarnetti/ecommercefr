@@ -178,7 +178,7 @@ export default function FeaturedProductForm({ initialValue }: Props) {
           onChange={handleChange}
           hidden
         />
-        <div className="h-[380px] w-full flex flex-col items-center justify-center border border-dashed border-slate-300 rounded-lg cursor-pointer relative">
+        <div className="h-[200px] md:h-[380px] w-full flex flex-col items-center justify-center border border-dashed border-slate-300 rounded-lg cursor-pointer relative overflow-hidden">
           {poster ? (
             <Image alt="banner" src={poster || initialValue?.banner} fill />
           ) : (
@@ -201,7 +201,7 @@ export default function FeaturedProductForm({ initialValue }: Props) {
           Titre
         </label>
       </div>
-      <div className="flex space-x-4">
+      <div className="flex flex-col sm:flex-row gap-4">
         <div className="relative w-full">
           <input
             name="link"

@@ -1,21 +1,21 @@
-// Importer les dépendances nécessaires
 import OrderModel from "@models/orderModel";
 import React from "react";
-// import dateFormat from "dateformat"; *Pour anglais
 import { format, parseISO } from "date-fns";
 import { fr } from "date-fns/locale";
 import SalesChart from "@components/SalesChart";
-import GridView from "@components/GridView";
 import { formatPrice } from "@utils/helper";
 import startDb from "@lib/db";
+import {
+  CurrencyDollarIcon,
+  ShoppingBagIcon,
+  ArrowTrendingUpIcon,
+  CalendarDaysIcon,
+} from "@heroicons/react/24/outline";
 
-// Obtenir l'historique des ventes des 7 derniers jours
 const sevenDaysSalesHistory = async () => {
-  // Calculer la date d'il y a 7 jours
   const sevenDaysAgo = new Date();
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
-  // Créer une liste de dates des 7 derniers jours
   const dateList: string[] = [];
   for (let i = 0; i < 7; i++) {
     const date = new Date(sevenDaysAgo);
@@ -24,11 +24,9 @@ const sevenDaysSalesHistory = async () => {
     dateList.push(dateString);
   }
 
-  // Connecter à la base de données
   await startDb();
 
-  // Obtenir les ventes des 7 derniers jours depuis la base de données
-  const last7DaysSales: { _id: string; totalAmount: number }[] =
+  const last7DaysSales: { _id: string; totalAmount: number; count: number }[] =
     await OrderModel.aggregate([
       {
         $match: {
@@ -40,53 +38,109 @@ const sevenDaysSalesHistory = async () => {
         $group: {
           _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
           totalAmount: { $sum: "$totalAmount" },
+          count: { $sum: 1 },
         },
       },
     ]);
 
-  // Comparer les dates et remplir les ventes vides avec 0
-  //[{sale: nulber, day:string}] => [{sale : 1000, day: ¨mon¨},{sale:>0, day: ¨thu¨}, ...]
   const sales = dateList.map((date) => {
     const matchedSale = last7DaysSales.find((sale) => sale._id === date);
     return {
-      day: format(parseISO(date), "eee", { locale: fr }), // Formater la date en français
+      day: format(parseISO(date), "EEE dd", { locale: fr }),
       sale: matchedSale ? matchedSale.totalAmount : 0,
+      orders: matchedSale ? matchedSale.count : 0,
     };
   });
 
-  // Calculer le total des ventes des 7 derniers jours
-  const totalSales = last7DaysSales.reduce((prevValue, { totalAmount }) => {
-    return (prevValue += totalAmount);
-  }, 0);
+  const totalSales = last7DaysSales.reduce(
+    (prev, { totalAmount }) => prev + totalAmount,
+    0
+  );
+  const totalOrders = last7DaysSales.reduce(
+    (prev, { count }) => prev + count,
+    0
+  );
 
-  // Retourner les ventes des 7 derniers jours et le total des ventes
-  return { sales, totalSales };
+  const avgOrderValue = totalOrders > 0 ? totalSales / totalOrders : 0;
+
+  const bestDay = sales.reduce(
+    (best, current) => (current.sale > best.sale ? current : best),
+    sales[0]
+  );
+
+  return { sales, totalSales, totalOrders, avgOrderValue, bestDay };
 };
 
-// Afficher les ventes des 7 derniers jours
 export default async function Sales() {
-  // Obtenir les ventes des 7 derniers jours
   const salesData = await sevenDaysSalesHistory();
 
-  // Retourner la vue des ventes des 7 derniers jours
-  return (
-    <div>
-      <GridView>
-        <div className="bg-blue-500 p-4 rounded space-y-4">
-          <h1 className="font-semibold text-3xl text-white">
-            {formatPrice(salesData.totalSales)}
-          </h1>
+  const kpis = [
+    {
+      label: "Chiffre d'affaires",
+      value: formatPrice(salesData.totalSales),
+      subtitle: "7 derniers jours",
+      icon: CurrencyDollarIcon,
+      color: "bg-emerald-500",
+    },
+    {
+      label: "Commandes",
+      value: salesData.totalOrders.toString(),
+      subtitle: "7 derniers jours",
+      icon: ShoppingBagIcon,
+      color: "bg-blue-500",
+    },
+    {
+      label: "Panier moyen",
+      value: formatPrice(salesData.avgOrderValue),
+      subtitle: "par commande",
+      icon: ArrowTrendingUpIcon,
+      color: "bg-amber-500",
+    },
+    {
+      label: "Meilleur jour",
+      value: salesData.bestDay?.day || "—",
+      subtitle: salesData.bestDay ? formatPrice(salesData.bestDay.sale) : "—",
+      icon: CalendarDaysIcon,
+      color: "bg-purple-500",
+    },
+  ];
 
-          <div className="text-white">
-            <p>Ventes totales</p>
-            <p>7 derniers jours</p>
+  return (
+    <div className="space-y-8">
+      <h1 className="text-xl md:text-2xl font-bold text-slate-900">
+        Tableau des ventes
+      </h1>
+
+      {/* KPI cards */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+        {kpis.map((kpi) => (
+          <div
+            key={kpi.label}
+            className="bg-white rounded-xl border border-slate-200 p-4 shadow-sm"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div
+                className={`${kpi.color} p-2 rounded-lg`}
+              >
+                <kpi.icon className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-xs md:text-sm text-slate-500 font-medium">
+                {kpi.label}
+              </span>
+            </div>
+            <p className="text-lg md:text-2xl font-bold text-slate-900">
+              {kpi.value}
+            </p>
+            <p className="text-xs text-slate-400 mt-1">{kpi.subtitle}</p>
           </div>
-        </div>
-      </GridView>
-      <div className="mt-10">
-        <h1 className="font-semibold text-xl md:text-3xl mb-4">
-          Historique des ventes (7 derniers jours)
-        </h1>
+        ))}
+      </div>
+
+      {/* Chart */}
+      <div className="bg-white rounded-xl border border-slate-200 p-4 md:p-6 shadow-sm">
+        <h2 className="font-semibold text-lg text-slate-800 mb-4">
+          Évolution des ventes (7 jours)
+        </h2>
         <SalesChart data={salesData.sales} />
       </div>
     </div>
