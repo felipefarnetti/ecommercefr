@@ -16,22 +16,7 @@ const settings: Settings = {
   slidesToScroll: 1,
   arrows: false,
   autoplay: false,
-  className: "w-full max-w-[420px]",
 };
-
-const keyStr =
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-
-const triplet = (e1: number, e2: number, e3: number) =>
-  keyStr.charAt(e1 >> 2) +
-  keyStr.charAt(((e1 & 3) << 4) | (e2 >> 4)) +
-  keyStr.charAt(((e2 & 15) << 2) | (e3 >> 6)) +
-  keyStr.charAt(e3 & 63);
-
-const rgbDataURL = (r: number, g: number, b: number) =>
-  `data:image/gif;base64,R0lGODlhAQABAPAA${
-    triplet(0, r, g) + triplet(b, 255, 255)
-  }/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`;
 
 export default function ProductImageGallery(props: Props) {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -39,7 +24,7 @@ export default function ProductImageGallery(props: Props) {
   const slider = useRef<Slider>(null);
 
   return (
-    <div className="max-w-[420px]">
+    <div className="w-full max-w-[480px]">
       <div className="rounded-xl overflow-hidden bg-slate-100">
         <Slider
           {...settings}
@@ -49,16 +34,17 @@ export default function ProductImageGallery(props: Props) {
           ref={slider}
         >
           {images.map((img, index) => (
-            <Image
-              key={index}
-              src={img}
-              alt="Product"
-              width={420}
-              height={420}
-              placeholder="blur"
-              blurDataURL={rgbDataURL(237, 181, 6)}
-              className="object-cover"
-            />
+            <div key={index}>
+              <div className="relative aspect-square">
+                <Image
+                  src={img}
+                  alt="Product"
+                  fill
+                  sizes="480px"
+                  className="object-contain"
+                />
+              </div>
+            </div>
           ))}
         </Slider>
       </div>
@@ -67,13 +53,21 @@ export default function ProductImageGallery(props: Props) {
           <button
             key={index}
             onClick={() => slider.current?.slickGoTo(index)}
-            className={`rounded-lg overflow-hidden border-2 transition-all ${
+            className={`rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${
               index === currentSlide
                 ? "border-amber-500 shadow-md"
                 : "border-transparent opacity-60 hover:opacity-100"
             }`}
           >
-            <Image src={img} alt="Thumbnail" width={72} height={72} className="object-cover" />
+            <div className="relative w-16 h-16">
+              <Image
+                src={img}
+                alt="Thumbnail"
+                fill
+                sizes="64px"
+                className="object-cover"
+              />
+            </div>
           </button>
         ))}
       </div>
