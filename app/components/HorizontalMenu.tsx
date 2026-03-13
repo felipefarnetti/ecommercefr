@@ -25,7 +25,10 @@ export default function HorizontalMenu({ children, autoScroll, hideArrowsMobile 
 
     const el = scrollRef.current;
 
+    const isMobile = () => window.innerWidth < 768;
+
     const startAutoScroll = () => {
+      if (!isMobile()) return;
       intervalRef.current = setInterval(() => {
         if (!el) return;
         const maxScroll = el.scrollWidth - el.clientWidth;
@@ -44,14 +47,21 @@ export default function HorizontalMenu({ children, autoScroll, hideArrowsMobile 
       }
     };
 
+    const handleResize = () => {
+      if (!isMobile()) stopAutoScroll();
+      else if (!intervalRef.current) startAutoScroll();
+    };
+
     startAutoScroll();
     el.addEventListener("pointerenter", stopAutoScroll);
     el.addEventListener("pointerleave", startAutoScroll);
+    window.addEventListener("resize", handleResize);
 
     return () => {
       stopAutoScroll();
       el.removeEventListener("pointerenter", stopAutoScroll);
       el.removeEventListener("pointerleave", startAutoScroll);
+      window.removeEventListener("resize", handleResize);
     };
   }, [autoScroll]);
 
