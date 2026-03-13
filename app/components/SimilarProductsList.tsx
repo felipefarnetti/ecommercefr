@@ -24,21 +24,21 @@ export default function SimilarProductsList({ products }: Props) {
       <HorizontalMenu>
         {products.map((product) => (
           <Link href={`/${product.title}/${product.id}`} key={product.id}>
-            <div className="w-[140px] md:w-[160px] mr-2 rounded-xl border border-slate-100 bg-white hover:shadow-md transition-shadow overflow-hidden">
+            <div className="w-[112px] md:w-[128px] mr-2 rounded-xl border border-slate-100 bg-white hover:shadow-md transition-shadow overflow-hidden">
               <div className="relative aspect-square">
                 <Image
                   fill
-                  sizes="160px"
+                  sizes="128px"
                   src={product.thumbnail}
                   alt={product.title}
                   className="object-cover"
                 />
               </div>
-              <div className="p-2.5">
-                <h3 className="text-xs font-medium text-slate-700 line-clamp-2 leading-snug">
+              <div className="p-2">
+                <h3 className="text-[11px] font-medium text-slate-700 line-clamp-2 leading-snug">
                   {product.title}
                 </h3>
-                <p className="text-sm font-bold text-slate-900 mt-1">
+                <p className="text-xs font-bold text-slate-900 mt-1">
                   {formatPrice(product.price)}
                 </p>
               </div>
