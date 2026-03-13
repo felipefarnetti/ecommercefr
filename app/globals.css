@@ -1,0 +1,79 @@
+@import "tailwindcss";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+@theme {
+  /* blue-gray color palette (mapped to slate for MT compatibility) */
+  --color-blue-gray-50: #f8fafc;
+  --color-blue-gray-100: #f1f5f9;
+  --color-blue-gray-200: #e2e8f0;
+  --color-blue-gray-300: #cbd5e1;
+  --color-blue-gray-400: #94a3b8;
+  --color-blue-gray-500: #64748b;
+  --color-blue-gray-600: #475569;
+  --color-blue-gray-700: #334155;
+  --color-blue-gray-800: #1e293b;
+  --color-blue-gray-900: #0f172a;
+}
+
+.slick-next::before,
+.slick-prev::before {
+  color: #000 !important;
+}
+
+.slick-dots {
+  bottom: 6px !important;
+}
+
+/* Protect react-slick from Tailwind 4 preflight reset */
+.slick-slider {
+  position: relative !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+.slick-list {
+  position: relative !important;
+  display: block !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.slick-track {
+  position: relative !important;
+  top: 0;
+  left: 0;
+  display: flex !important;
+}
+
+.slick-track::before,
+.slick-track::after {
+  display: none !important;
+}
+
+.slick-slide {
+  float: left;
+  height: 100%;
+  min-height: 1px;
+  flex-shrink: 0 !important;
+}
+
+.slick-slide > div {
+  width: 100%;
+}
+
+.slick-initialized .slick-slide {
+  display: block !important;
+}
+
+/* chrome and chromium based */
+.react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.react-horizontal-scrolling-menu--scroll-container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
