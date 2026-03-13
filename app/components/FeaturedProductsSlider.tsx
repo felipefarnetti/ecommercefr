@@ -34,11 +34,11 @@ export default function FeaturedProductsSlider({ products }: Props) {
   if (!products.length) return null;
 
   return (
-    <div className="lg:h-[420px] md:h-[320px] h-[288px] overflow-hidden relative rounded-2xl">
+    <div className="lg:h-[420px] md:h-[320px] h-[240px] overflow-hidden relative rounded-2xl">
       <Slider {...settings}>
         {products.map(({ banner, title, link, linkTitle }, index) => (
           <div className="select-none relative" key={index}>
-            <div className="w-full lg:h-[420px] md:h-[320px] h-[288px] relative">
+            <div className="w-full lg:h-[420px] md:h-[320px] h-[240px] relative">
               <Image
                 fill
                 priority
