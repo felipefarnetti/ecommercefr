@@ -47,20 +47,15 @@ export default function FeaturedProductsSlider({ products }: Props) {
                 sizes="100vw"
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </div>
-            <div className="absolute inset-0 p-8 md:p-12">
-              <div className="md:w-1/2 w-full h-full flex flex-col items-start justify-center">
-                <h1 className="lg:text-4xl md:text-3xl text-xl font-bold text-white mb-4 drop-shadow-lg">
-                  {title}
-                </h1>
-                <button
-                  onClick={() => router.push(link)}
-                  className="bg-white text-slate-900 px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-amber-500 hover:text-white transition-all duration-300"
-                >
-                  {linkTitle}
-                </button>
-              </div>
+            <div className="absolute inset-0 flex items-end justify-center p-6 md:p-8">
+              <button
+                onClick={() => router.push(link)}
+                className="bg-white text-slate-900 px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-amber-500 hover:text-white transition-all duration-300 shadow-lg"
+              >
+                {title}
+              </button>
             </div>
           </div>
         ))}
