@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Notification from "@components/Notification";
 import AuthSession from "@components/AuthSession";
+import PageTransition from "@components/PageTransition";
 import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,7 +27,7 @@ export default function RootLayout({
           className={`${inter.className} bg-slate-50 text-slate-800`}
           suppressHydrationWarning={true}
         >
-          {children}
+          <PageTransition>{children}</PageTransition>
           <Analytics />
           <Notification />
         </body>
