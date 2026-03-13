@@ -4,40 +4,48 @@ import React, { useState, useTransition } from "react";
 import CartCountUpdater from "@components/CartCountUpdater";
 import { useParams, useRouter } from "next/navigation";
 import useAuth from "@hooks/useAuth";
+import useGuestCart from "@hooks/useGuestCart";
 import { toast } from "react-toastify";
 import Wishlist from "@ui/Wishlist";
 
-// Interface pour les propriétés (props) du composant
 interface Props {
   wishlist?: boolean;
+  productTitle?: string;
+  productThumbnail?: string;
+  productPrice?: number;
 }
 
-// Composant pour les options d'achat
-export default function BuyingOptions({ wishlist }: Props) {
+export default function BuyingOptions({ wishlist, productTitle, productThumbnail, productPrice }: Props) {
   const [quantity, setQuantity] = useState(1);
   const [isPending, startTransition] = useTransition();
   const params = useParams();
   const product = params.product as string[] | undefined;
   const productId = product?.[1];
   const { loggedIn } = useAuth();
+  const guestCart = useGuestCart();
   const router = useRouter();
 
-  // Fonction pour incrémenter la quantité
   const handleIncrement = () => {
     setQuantity((prevCount) => prevCount + 1);
   };
 
-  // Fonction pour décrémenter la quantité
   const handleDecrement = () => {
     if (quantity === 0) return;
     setQuantity((prevCount) => prevCount - 1);
   };
 
-  // Fonction pour ajouter au panier
   const addToCart = async () => {
     if (!productId) return;
 
-    if (!loggedIn) return router.push("/auth/signin");
+    if (!loggedIn) {
+      guestCart.addItem({
+        productId,
+        title: productTitle || "",
+        thumbnail: productThumbnail || "",
+        price: productPrice || 0,
+      }, quantity);
+      return;
+    }
 
     const res = await fetch("/api/product/cart", {
       method: "POST",
@@ -50,8 +58,8 @@ export default function BuyingOptions({ wishlist }: Props) {
     router.refresh();
   };
 
-  // Fonction pour passer à la caisse
   const handleCheckout = async () => {
+    if (!loggedIn) return router.push("/auth/signin");
     const res = await fetch("/api/checkout/instant", {
       method: "POST",
       body: JSON.stringify({ productId }),
@@ -60,7 +68,6 @@ export default function BuyingOptions({ wishlist }: Props) {
     if (!res.ok) {
       toast.error(error);
     } else {
-      // Ouvrir l'URL de la caisse
       window.location.href = url;
     }
   };

@@ -1,13 +1,11 @@
-// Importer les dépendances nécessaires
-
 import CartItems from "@components/CartItems";
+import GuestCartView from "@components/GuestCartView";
 import startDb from "@lib/db";
 import CartModel from "@models/cartModel";
 import { auth } from "@/auth";
 import { Types } from "mongoose";
 import React from "react";
 
-// Fonction asynchrone pour récupérer les produits dans le panier de l'utilisateur
 const fetchCartProducts = async () => {
   const session = await auth();
   if (!session?.user) {
@@ -69,8 +67,14 @@ const fetchCartProducts = async () => {
   return cartItems;
 };
 
-// Page du panier
 export default async function Cart() {
+  const session = await auth();
+  const isLoggedIn = !!session?.user;
+
+  if (!isLoggedIn) {
+    return <GuestCartView />;
+  }
+
   const cart = await fetchCartProducts();
 
   if (!cart)

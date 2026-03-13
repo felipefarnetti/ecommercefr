@@ -5,6 +5,7 @@ import truncate from "truncate";
 import { formatPrice } from "@utils/helper";
 import { toast } from "react-toastify";
 import useAuth from "@hooks/useAuth";
+import useGuestCart from "@hooks/useGuestCart";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import Rating from "./Rating";
@@ -29,10 +30,12 @@ interface Props {
 
 export default function ProductCard({ product }: Props) {
   const { loggedIn } = useAuth();
+  const guestCart = useGuestCart();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
   const handleCheckout = async () => {
+    if (!loggedIn) return router.push("/auth/signin");
     const res = await fetch("/api/checkout/instant", {
       method: "POST",
       body: JSON.stringify({ productId: product.id }),
@@ -46,7 +49,15 @@ export default function ProductCard({ product }: Props) {
   };
 
   const addToCart = async () => {
-    if (!loggedIn) return router.push("/auth/signin");
+    if (!loggedIn) {
+      guestCart.addItem({
+        productId: product.id,
+        title: product.title,
+        thumbnail: product.thumbnail,
+        price: product.price.discounted,
+      });
+      return;
+    }
 
     const res = await fetch("/api/product/cart", {
       method: "POST",

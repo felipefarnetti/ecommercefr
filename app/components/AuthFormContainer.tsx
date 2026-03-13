@@ -15,7 +15,9 @@ export default function AuthFormContainer({ title, children, onSubmit }: Props) 
       <h1 className="text-2xl font-bold text-slate-900 text-center mb-6">
         {title}
       </h1>
-      {children}
+      <div className="space-y-4">
+        {children}
+      </div>
     </form>
   );
 }

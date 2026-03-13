@@ -82,7 +82,12 @@ export default function ProductView({
               Hors stock
             </div>
           ) : (
-            <BuyingOptions wishlist={isWishlist} />
+            <BuyingOptions
+                wishlist={isWishlist}
+                productTitle={title}
+                productThumbnail={images[0]}
+                productPrice={price.discounted}
+              />
           )}
         </div>
       </div>
