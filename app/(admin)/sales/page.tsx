@@ -106,7 +106,7 @@ export default async function Sales() {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 animate-fade-in">
       <h1 className="text-xl md:text-2xl font-bold text-slate-900">
         Tableau des ventes
       </h1>

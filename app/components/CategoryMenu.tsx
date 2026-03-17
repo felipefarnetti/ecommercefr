@@ -23,17 +23,17 @@ const categoryData = [
 
 export default function CategoryMenu() {
   return (
-    <div className="grid grid-cols-4 sm:grid-cols-7 gap-2 md:gap-3 px-4">
+    <div className="grid grid-cols-4 sm:grid-cols-7 gap-3 md:gap-4 px-4">
       {categoryData.map(({ name, label, icon: Icon, color }) => (
         <Link
           key={name}
           href={`/browse-products/${name}`}
-          className="group flex flex-col items-center gap-1.5 p-2 md:p-3 rounded-xl hover:shadow-md transition-all"
+          className="group flex flex-col items-center gap-2 p-3 md:p-4 rounded-2xl bg-white border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-all duration-200"
         >
-          <div className={`${color} p-2.5 md:p-3 rounded-xl group-hover:scale-110 transition-transform`}>
+          <div className={`${color} p-3 md:p-3.5 rounded-2xl group-hover:scale-110 transition-transform duration-200`}>
             <Icon className="w-5 h-5 md:w-6 md:h-6" />
           </div>
-          <span className="text-[10px] md:text-xs font-medium text-slate-600 text-center leading-tight">
+          <span className="text-[10px] md:text-xs font-semibold text-slate-700 text-center leading-tight">
             {label}
           </span>
         </Link>

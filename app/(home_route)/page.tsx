@@ -56,7 +56,7 @@ export default async function Home() {
   ]);
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 animate-slide-up">
       <FeaturedProductsSlider products={featuredProducts} />
 
       {/* Categories */}

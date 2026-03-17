@@ -72,7 +72,7 @@ export default function ProductCard({ product }: Props) {
   return (
     <div className="group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-slate-100 flex flex-col">
       <Link href={`/${product.title}/${product.id}`} className="flex-1">
-        <div className="relative aspect-[4/3] overflow-hidden">
+        <div className="relative aspect-square overflow-hidden">
           <Image
             src={product.thumbnail}
             alt={product.title}
@@ -86,26 +86,26 @@ export default function ProductCard({ product }: Props) {
             </span>
           )}
         </div>
-        <div className="p-2.5 md:p-3">
+        <div className="p-2 md:p-2.5">
           <h3 className="font-semibold text-slate-800 text-xs md:text-sm line-clamp-1">
             {truncate(product.title, 50)}
           </h3>
-          <p className="text-slate-500 text-[10px] md:text-xs line-clamp-2 mt-0.5 mb-1.5">
-            {truncate(product.description, 100)}
+          <p className="text-slate-500 text-[10px] md:text-xs line-clamp-2 mt-0.5 leading-tight">
+            {truncate(product.description, 80)}
           </p>
-          <div className="flex items-center justify-between gap-1">
-            <div className="flex items-baseline gap-1.5">
+          <div className="flex items-center justify-between gap-1 mt-1">
+            <div className="flex items-baseline gap-1">
               {product.price.base !== product.price.discounted ? (
                 <>
-                  <span className="text-sm md:text-base font-bold text-slate-900">
+                  <span className="text-xs md:text-sm font-bold text-slate-900">
                     {formatPrice(product.price.discounted)}
                   </span>
-                  <span className="text-[10px] md:text-xs text-slate-400 line-through">
+                  <span className="text-[9px] md:text-[10px] text-slate-400 line-through">
                     {formatPrice(product.price.base)}
                   </span>
                 </>
               ) : (
-                <span className="text-sm md:text-base font-bold text-slate-900">
+                <span className="text-xs md:text-sm font-bold text-slate-900">
                   {formatPrice(product.price.base)}
                 </span>
               )}
@@ -117,18 +117,18 @@ export default function ProductCard({ product }: Props) {
         </div>
       </Link>
 
-      <div className="px-2.5 pb-2.5 md:px-3 md:pb-3 flex gap-1.5">
+      <div className="px-2 pb-2 md:px-2.5 md:pb-2.5 flex gap-1">
         <button
           onClick={() => startTransition(async () => await addToCart())}
           disabled={isPending}
-          className="flex-1 text-[10px] md:text-xs font-semibold uppercase py-2 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 transition-colors disabled:opacity-50"
+          className="flex-1 text-[9px] md:text-[10px] font-semibold uppercase py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 transition-colors disabled:opacity-50"
         >
           Ajouter au panier
         </button>
         <button
           disabled={isPending}
           onClick={() => startTransition(async () => await handleCheckout())}
-          className="flex-1 text-[10px] md:text-xs font-semibold uppercase py-2 rounded-lg bg-amber-500 text-white hover:bg-amber-600 transition-colors disabled:opacity-50"
+          className="flex-1 text-[9px] md:text-[10px] font-semibold uppercase py-1.5 rounded-lg bg-amber-500 text-white hover:bg-amber-600 transition-colors disabled:opacity-50"
         >
           Acheter
         </button>

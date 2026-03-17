@@ -57,7 +57,7 @@ const AdminSidebar = ({ children }: Props) => {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 z-40 h-full w-56 bg-slate-900 p-4 pt-16 md:pt-4 transform transition-transform duration-200 ease-in-out md:sticky md:top-0 md:translate-x-0 ${
+        className={`fixed top-0 left-0 z-40 h-full w-56 bg-slate-900 p-4 pt-16 md:pt-4 transform transition-transform duration-200 ease-in-out md:sticky md:top-0 md:min-h-screen md:translate-x-0 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -115,7 +115,7 @@ const AdminSidebar = ({ children }: Props) => {
 
       {/* Main content */}
       <div className="flex-1 min-w-0 pt-14 md:pt-0">
-        <div className="max-w-screen-xl mx-auto p-4 overflow-x-auto">
+        <div className="max-w-screen-xl mx-auto p-4 md:p-6 overflow-x-auto">
           {children}
         </div>
       </div>

@@ -88,7 +88,7 @@ export default async function Dashboard() {
 
   // Renvoyer le composant Dashboard
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-fade-in">
       <h1 className="text-xl md:text-2xl font-bold text-slate-900">
         Tableau de bord
       </h1>

@@ -10,7 +10,7 @@ export default async function HomeLayout({ children }: Props) {
   return (
     <div className="min-h-screen flex flex-col">
       <NavBar />
-      <main className="flex-1 max-w-screen-xl mx-auto w-full xl:px-0 px-4 py-6">
+      <main className="flex-1 max-w-screen-xl mx-auto w-full xl:px-0 px-4 py-6 animate-fade-in">
         {children}
       </main>
       <Footer />

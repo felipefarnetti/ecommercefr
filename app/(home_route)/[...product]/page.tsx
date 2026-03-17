@@ -104,7 +104,7 @@ export default async function Product({ params }: Props) {
   const similarProducts = await fetchSimilarProducts();
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 animate-slide-up">
       {/* Product info */}
       <ProductView
         title={productInfo.title}
